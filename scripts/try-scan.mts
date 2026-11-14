@@ -1,0 +1,11 @@
+import { readFileSync } from "node:fs";
+import { parseReceipt } from "../lib/parse";
+import { analyse } from "../lib/scan";
+const file = process.argv[2];
+const t0 = Date.now();
+const r = await parseReceipt(readFileSync(file).toString("base64"), "image/jpeg", true);
+const t1 = Date.now();
+const res = await analyse(r, [], []);
+console.log(JSON.stringify({ parseMs: t1 - t0, matchMs: Date.now() - t1, store: r.store, date: r.purchasedAt, total: r.total, sum: r.sumCheckPassed, coverage: res.coverage, headline: res.headlineSaving, storeKnown: res.storeKnown }, null, 1));
+for (const m of res.matches) console.log(m.line, r.lines[m.line - 1].rawName, "->", m.productCode, m.confidence, m.reason);
+for (const f of res.findings) console.log(f.type, f.savingOnThisReceipt, f.headline);

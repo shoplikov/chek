@@ -4,6 +4,8 @@ export const CONFIG = {
   GUARANTEE_THRESHOLD_USD: 20,     // of PROVEN savings per calendar month
   ELSEWHERE_MIN_PCT: 0.05,
   SWAP_MIN_PCT: 0.15,
+  SWAP_MIN_CATEGORY_DEPTH: 3,      // a swap needs a specific category, not "snacks"
+  SWAP_MAX_SIZE_RATIO: 2.5,        // a swap target's pack is at most 2.5x larger or smaller
   UP_MIN_PCT: 0.05,
   AVG_MIN_PCT: 0.10,
   MATCH_MIN_CONFIDENCE: 0.8,
