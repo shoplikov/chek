@@ -4,6 +4,8 @@
 
 Live: **https://54-163-135-214.nip.io** · No sign-up · Works on a phone
 
+![Home, a Week 1 result, and Week 2 with proven savings](docs/screens.png)
+
 Chek reads a US grocery receipt and shows, line by line, where the same product was cheaper at
 another nearby store, where a comparable product at the same store costs less per ounce, where
 a price went up since your last receipt, and where you paid well above the US average. Each
@@ -80,7 +82,7 @@ matching, findings, pledge checks, the guarantee counter and inflation are all c
 | Parse: median time per receipt | 5.6 s | `npm run eval:parse` |
 | Match precision (target: wrong matches under 5%) | 98.1% (1 wrong of 52) | `npm run eval:match` |
 | Match recall | 89.5% | `npm run eval:match` |
-| Unit tests | 29 passing | `npm test` |
+| Unit tests | 30 passing | `npm test` |
 
 The one wrong match: two sizes of the same Pop-Tarts at a store outside the demo area, where no
 store price was available to tell them apart. Put real receipt photos in `eval/real/` (git-ignored) and
