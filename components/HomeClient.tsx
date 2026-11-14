@@ -54,7 +54,7 @@ export default function HomeClient({ samples }: { samples: Sample[] }) {
             <button key={s.id} disabled={!!busy} onClick={() => run(s.id, () => scanSample(s.id))}
               className="group text-left rounded-2xl border border-line bg-card overflow-hidden hover:border-accent disabled:opacity-60">
               <div className="relative h-28 bg-[#8a8f96] overflow-hidden">
-                <Image src={`/samples/${s.file}`} alt={`Sample receipt: ${s.title}`} fill sizes="200px" className="object-cover object-top opacity-90 group-hover:opacity-100" />
+                <Image src={`/samples/${s.file}`} alt={`Sample receipt: ${s.title}`} fill sizes="200px" loading="eager" className="object-cover object-top opacity-90 group-hover:opacity-100" />
                 <span className="absolute left-2 top-2"><Badge>Sample</Badge></span>
                 {busy === s.id && <span className="absolute inset-0 grid place-items-center bg-black/40 text-white"><Spinner /></span>}
               </div>

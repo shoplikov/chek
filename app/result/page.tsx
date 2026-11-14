@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { CONFIG } from "@/lib/config";
 import { store } from "@/lib/store";
-import { money } from "@/lib/util";
+import { displayName, money } from "@/lib/util";
 import type { Finding, Pledge, ProvenItem, StoredReceipt } from "@/lib/types";
 import { Badge, Button, Card } from "@/components/ui";
 import { useStoreValue } from "@/components/useStore";
@@ -46,7 +46,7 @@ function ResultView({ r, unlocked, pledges }: { r: StoredReceipt; unlocked: bool
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap items-center gap-2 text-sm text-muted">
-        <span className="font-medium text-ink">{receipt.store.name}{receipt.store.city ? `, ${receipt.store.city}` : ""}</span>
+        <span className="font-medium text-ink">{displayName(receipt.store.name)}{receipt.store.city ? `, ${displayName(receipt.store.city)}` : ""}</span>
         <span>·</span><span>{receipt.purchasedAt ?? "no date printed"}</span>
         <span>·</span><span className="tabular">{money(receipt.total)}</span>
         {receipt.isSample && <Badge>Sample</Badge>}
@@ -145,7 +145,7 @@ function ProvenBlock({ items, total }: { items: ProvenItem[]; total: number }) {
           <li key={i.pledgeId} className="rounded-xl bg-card border border-line p-3 text-sm">
             <div className="font-medium">{i.label}</div>
             <div className="mt-1 grid grid-cols-2 gap-2 text-xs text-muted tabular">
-              <div>Then: <b className="text-ink">{money(i.then.price)}</b> {i.then.unit ?? "each"}<br />{i.then.sourceLabel}, {i.then.observedAt}</div>
+              <div>Then: <b className="text-ink">{money(i.then.price)}</b> {i.then.unit ?? "each"}<br />Your receipt, {displayName(i.then.sourceLabel.replace(/^Your receipt, /, ""))}, {i.then.observedAt}</div>
               <div>Now: <b className="text-ink">{money(i.now.price)}</b> {i.now.unit ?? "each"}<br />line “{i.now.productName}”, {i.now.observedAt}</div>
             </div>
             <div className={`mt-1 text-sm font-medium ${i.status === "saved" ? "text-accent" : "text-warn"}`}>

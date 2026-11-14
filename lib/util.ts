@@ -4,3 +4,7 @@ export const round2 = (n: number) => Math.round(n * 100) / 100;
 export const money = (n: number) => `$${n.toFixed(2)}`;
 /** What one unit on this line cost after discounts. */
 export const paidPrice = (l: ReceiptLine) => (l.lineTotal - l.discount) / (l.qty || 1);
+
+/** "SAFEWAY" -> "Safeway"; keeps names that already have mixed case. */
+export const displayName = (s: string) =>
+  s === s.toUpperCase() ? s.toLowerCase().replace(/(^|[\s'&-])([a-z])/g, (_, a, b) => a + b.toUpperCase()) : s;

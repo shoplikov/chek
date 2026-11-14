@@ -46,3 +46,13 @@ test("notices flag double scans and line math, and carry the amount at stake", (
   assert.equal(n.filter(x => x.kind === "possible_double_scan").length, 1);
   assert.equal(n.find(x => x.kind === "line_math_mismatch")!.amountAtStake, 1.0);
 });
+
+test("personal inflation skips a small latest receipt and uses the widest qualifying pair", () => {
+  const m = [matched(1, "a"), matched(2, "b"), matched(3, "c")];
+  const early = receipt([line(1, "A", 2), line(2, "B", 3), line(3, "C", 5)], { id: "e", purchasedAt: "2026-09-10" });
+  const late = receipt([line(1, "A", 2.2), line(2, "B", 3.3), line(3, "C", 5.5)], { id: "l", purchasedAt: "2026-10-10" });
+  const small = receipt([line(1, "SOY", 4)], { id: "s", purchasedAt: "2026-10-12", store: { name: "Sprouts", city: null, state: null } });
+  const inf = personalInflation([{ receipt: early, matches: m }, { receipt: late, matches: m }, { receipt: small, matches: [matched(1, "z")] }], cpi);
+  assert.ok(inf.ok);
+  assert.equal(inf.to, "2026-10-10");
+});

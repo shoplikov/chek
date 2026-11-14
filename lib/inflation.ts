@@ -21,24 +21,35 @@ function basket(x: ReceiptWithMatches) {
   return b;
 }
 
+/**
+ * Compares the earliest and latest receipts that share enough products: the widest pair that
+ * is at least INFLATION_MIN_DAYS apart with INFLATION_MIN_COMMON_PRODUCTS products in common.
+ */
 export function personalInflation(history: ReceiptWithMatches[], cpi: { month: string; value: number }[]): Inflation {
   const dated = history.filter(h => h.receipt.purchasedAt).sort((a, b) => a.receipt.purchasedAt!.localeCompare(b.receipt.purchasedAt!));
-  if (dated.length < 2) return { ok: false, reason: "not enough history yet" };
-  const early = dated[0], late = dated[dated.length - 1];
-  const days = (Date.parse(late.receipt.purchasedAt!) - Date.parse(early.receipt.purchasedAt!)) / 864e5;
-  if (days < CONFIG.INFLATION_MIN_DAYS) return { ok: false, reason: "not enough history yet" };
-  const a = basket(early), b = basket(late);
-  let then = 0, now = 0, common = 0;
-  for (const [k, v] of a) {
-    const w = b.get(k);
-    if (!w) continue;
-    then += v.price * v.qty; now += w.price * v.qty; common++;
+  const day = (h: ReceiptWithMatches) => Date.parse(h.receipt.purchasedAt!) / 864e5;
+  let best: { early: ReceiptWithMatches; late: ReceiptWithMatches; then: number; now: number; common: number } | null = null;
+  for (let i = 0; i < dated.length; i++) {
+    for (let j = dated.length - 1; j > i; j--) {
+      const early = dated[i], late = dated[j];
+      if (day(late) - day(early) < CONFIG.INFLATION_MIN_DAYS) break;
+      if (best && day(late) - day(early) <= day(best.late) - day(best.early)) break;
+      const a = basket(early), b = basket(late);
+      let then = 0, now = 0, common = 0;
+      for (const [k, v] of a) {
+        const w = b.get(k);
+        if (!w) continue;
+        then += v.price * v.qty; now += w.price * v.qty; common++;
+      }
+      if (common >= CONFIG.INFLATION_MIN_COMMON_PRODUCTS && then > 0) { best = { early, late, then, now, common }; break; }
+    }
   }
-  if (common < CONFIG.INFLATION_MIN_COMMON_PRODUCTS || then <= 0) return { ok: false, reason: "not enough history yet" };
-  const fromMonth = early.receipt.purchasedAt!.slice(0, 7), toMonth = late.receipt.purchasedAt!.slice(0, 7);
+  if (!best) return { ok: false, reason: "not enough history yet" };
+  const from = best.early.receipt.purchasedAt!, to = best.late.receipt.purchasedAt!;
+  const fromMonth = from.slice(0, 7), toMonth = to.slice(0, 7);
   const f = cpi.find(c => c.month === fromMonth), t = cpi.find(c => c.month === toMonth);
   return {
-    ok: true, personal: now / then - 1, common, from: early.receipt.purchasedAt!, to: late.receipt.purchasedAt!,
-    official: f && t ? { change: t.value / f.value - 1, fromMonth, toMonth } : null,
+    ok: true, personal: best.now / best.then - 1, common: best.common, from, to,
+    official: f && t && fromMonth !== toMonth ? { change: t.value / f.value - 1, fromMonth, toMonth } : null,
   };
 }

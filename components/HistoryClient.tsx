@@ -5,7 +5,8 @@ import { CONFIG } from "@/lib/config";
 import { guaranteeCounter } from "@/lib/guarantee";
 import { personalInflation } from "@/lib/inflation";
 import { store } from "@/lib/store";
-import { money } from "@/lib/util";
+import { chainKey } from "@/lib/proven";
+import { displayName, money } from "@/lib/util";
 import type { Pledge, StoredReceipt } from "@/lib/types";
 import { Badge, Button, Card, Spinner } from "./ui";
 import { useStoreValue } from "./useStore";
@@ -41,8 +42,11 @@ export default function HistoryClient({ cpi, cpiId }: { cpi: { month: string; va
   const counter = guaranteeCounter(receipts.map(r => ({ purchasedAt: r.receipt.purchasedAt, scannedAt: r.scannedAt, provenSaving: r.provenSaving, headlineSaving: r.headlineSaving })), new Date());
   const inflation = personalInflation(receipts.map(r => ({ receipt: r.receipt, matches: r.matches })), cpi);
   const byStore = new Map<string, Pledge[]>();
+  const storeTitle = new Map<string, string>();
   for (const p of pledges) {
-    const k = p.kind === "cheaper_elsewhere" ? p.targetStore ?? "Another store" : p.fromStore;
+    const name = p.kind === "cheaper_elsewhere" ? p.targetStore ?? "Another store" : displayName(p.fromStore);
+    const k = p.kind === "cheaper_elsewhere" ? `e:${name}` : `s:${chainKey(p.fromStore)}`;
+    if (!storeTitle.has(k)) storeTitle.set(k, name);
     byStore.set(k, [...(byStore.get(k) ?? []), p]);
   }
   const perPledge = pledges.map(p => {
@@ -63,9 +67,9 @@ export default function HistoryClient({ cpi, cpiId }: { cpi: { month: string; va
           <p className="mt-2 text-sm text-muted">Empty. On a result, tap <b>I&apos;ll switch next time</b> on a finding to add it here.</p>
         ) : (
           <div className="mt-3 space-y-3">
-            {[...byStore.entries()].map(([storeName, ps]) => (
-              <div key={storeName}>
-                <div className="text-xs font-semibold uppercase tracking-wide text-muted">At {storeName}</div>
+            {[...byStore.entries()].map(([key, ps]) => (
+              <div key={key}>
+                <div className="text-xs font-semibold uppercase tracking-wide text-muted">At {storeTitle.get(key)}</div>
                 <ul className="mt-1 divide-y divide-line">
                   {ps.map(p => (
                     <li key={p.id} className="flex items-center justify-between gap-2 py-2 text-sm">
@@ -104,6 +108,7 @@ export default function HistoryClient({ cpi, cpiId }: { cpi: { month: string; va
       <Card className={counter.met ? "border-[#c4e6d6]" : ""}>
         <h2 className="font-semibold">This month&apos;s guarantee</h2>
         <p className="mt-1 text-sm">Proven savings this month: <b className="tabular">{money(counter.proven)}</b> of {money(counter.threshold)}. If we can&apos;t prove {money(counter.threshold)} in a month, that month is free.</p>
+        {counter.met && <p className="mt-1 text-sm font-medium text-accent">✓ Met for {monthName(counter.month)}: Chek has paid for itself this month.</p>}
         <div className="mt-2 h-2 rounded-full bg-bg overflow-hidden"><div className="h-full bg-accent" style={{ width: `${Math.min(100, (counter.proven / counter.threshold) * 100)}%` }} /></div>
         <p className="mt-2 text-xs text-muted">Found on your receipts this month: <span className="tabular">{money(counter.found)}</span>. Found is what you could save; proven is what you did.</p>
       </Card>
@@ -139,7 +144,7 @@ export default function HistoryClient({ cpi, cpiId }: { cpi: { month: string; va
               <li key={r.receipt.id}>
                 <Link href={`/result?id=${encodeURIComponent(r.receipt.id)}`} className="flex items-center justify-between gap-2 py-2 text-sm hover:bg-bg -mx-2 px-2 rounded-lg">
                   <span>
-                    {r.receipt.store.name}{r.receipt.store.city ? `, ${r.receipt.store.city}` : ""} <span className="text-muted">· {r.receipt.purchasedAt ?? "no date"}</span>{" "}
+                    {displayName(r.receipt.store.name)}{r.receipt.store.city ? `, ${displayName(r.receipt.store.city)}` : ""} <span className="text-muted">· {r.receipt.purchasedAt ?? "no date"}</span>{" "}
                     {isDemo(r.receipt.id) ? <Badge tone="demo">Demo</Badge> : r.receipt.isSample ? <Badge>Sample</Badge> : null}
                   </span>
                   <span className="text-right tabular text-xs">
