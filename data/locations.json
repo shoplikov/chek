@@ -1,0 +1,175 @@
+{
+ "source": "Open Prices (Open Food Facts), https://prices.openfoodfacts.org",
+ "licence": "ODbL 1.0",
+ "downloadedAt": "2026-11-14",
+ "locations": [
+  {
+   "id": 3984,
+   "name": "Walmart Supercenter",
+   "city": "Mountain View",
+   "postcode": "94040",
+   "lat": 37.4008425,
+   "lon": -122.1096981
+  },
+  {
+   "id": 3998,
+   "name": "Safeway",
+   "city": "Mountain View",
+   "postcode": "94043",
+   "lat": 37.4031206,
+   "lon": -122.079306
+  },
+  {
+   "id": 3999,
+   "name": "Trader Joe's",
+   "city": "Mountain View",
+   "postcode": "94040",
+   "lat": 37.40215,
+   "lon": -122.1106966
+  },
+  {
+   "id": 4031,
+   "name": "Target",
+   "city": "Sunnyvale",
+   "postcode": "94086",
+   "lat": 37.3737055,
+   "lon": -122.0323814
+  },
+  {
+   "id": 4058,
+   "name": "Whole Foods Market",
+   "city": "Los Altos",
+   "postcode": "94022",
+   "lat": 37.3988983,
+   "lon": -122.1107585
+  },
+  {
+   "id": 4065,
+   "name": "Costco",
+   "city": "Sunnyvale",
+   "postcode": "94086",
+   "lat": 37.3719644,
+   "lon": -121.9945371
+  },
+  {
+   "id": 4117,
+   "name": "Whole Foods Market",
+   "city": "Sunnyvale",
+   "postcode": "94086",
+   "lat": 37.3739192,
+   "lon": -122.0312241
+  },
+  {
+   "id": 4120,
+   "name": "Costco",
+   "city": "Mountain View",
+   "postcode": "94043",
+   "lat": 37.4209559,
+   "lon": -122.0956444
+  },
+  {
+   "id": 4143,
+   "name": "Ava's Market and Deli",
+   "city": "Mountain View",
+   "postcode": "94041",
+   "lat": 37.3920833,
+   "lon": -122.0802082
+  },
+  {
+   "id": 4152,
+   "name": "Draeger's",
+   "city": "Los Altos",
+   "postcode": "94022",
+   "lat": 37.3763157,
+   "lon": -122.1169087
+  },
+  {
+   "id": 4190,
+   "name": "Smart & Final extra!",
+   "city": "Mountain View",
+   "postcode": "94040",
+   "lat": 37.378767,
+   "lon": -122.0715874
+  },
+  {
+   "id": 4191,
+   "name": "Nob Hill Foods",
+   "city": "Mountain View",
+   "postcode": "94040",
+   "lat": 37.3783433,
+   "lon": -122.0763504
+  },
+  {
+   "id": 4192,
+   "name": "99 Ranch Market",
+   "city": "Mountain View",
+   "postcode": "94040",
+   "lat": 37.377664,
+   "lon": -122.076577
+  },
+  {
+   "id": 4393,
+   "name": "Sprouts Farmers Market",
+   "city": "Sunnyvale",
+   "postcode": "94087",
+   "lat": 37.3675387,
+   "lon": -122.0302442
+  },
+  {
+   "id": 4471,
+   "name": "Grocery Outlet",
+   "city": "Sunnyvale",
+   "postcode": "94089",
+   "lat": 37.4032334,
+   "lon": -122.0097588
+  },
+  {
+   "id": 4483,
+   "name": "Mega Mart",
+   "city": "Sunnyvale",
+   "postcode": "94087",
+   "lat": 37.3568219,
+   "lon": -122.0202581
+  },
+  {
+   "id": 4850,
+   "name": "La Plaza",
+   "city": "Mountain View",
+   "postcode": "94040",
+   "lat": 37.4030272,
+   "lon": -122.0981098
+  },
+  {
+   "id": 4856,
+   "name": "Lucky",
+   "city": "Sunnyvale",
+   "postcode": "94085",
+   "lat": 37.388455,
+   "lon": -122.0294043
+  },
+  {
+   "id": 4895,
+   "name": "J.L. Produce",
+   "city": "Mountain View",
+   "postcode": "94041",
+   "lat": 37.3977578,
+   "lon": -122.0758858
+  },
+  {
+   "id": 5032,
+   "name": "Safeway",
+   "city": "Mountain View",
+   "postcode": "94040",
+   "lat": 37.4017822,
+   "lon": -122.1118113
+  },
+  {
+   "id": 6000,
+   "name": "Safeway",
+   "city": "Sunnyvale",
+   "postcode": "94807",
+   "lat": 37.3644505,
+   "lon": -122.0307183
+  }
+ ]
+}

@@ -1,0 +1,1434 @@
+{
+ "source": "U.S. Bureau of Labor Statistics, https://www.bls.gov (public domain)",
+ "downloadedAt": "2026-11-14",
+ "cpi": {
+  "id": "CUUR0000SAF11",
+  "item": "CPI-U, food at home, U.S. city average, not seasonally adjusted",
+  "months": [
+   {
+    "month": "2023-10",
+    "value": 304.788
+   },
+   {
+    "month": "2023-11",
+    "value": 303.224
+   },
+   {
+    "month": "2023-12",
+    "value": 303.005
+   },
+   {
+    "month": "2024-01",
+    "value": 305.037
+   },
+   {
+    "month": "2024-02",
+    "value": 305.469
+   },
+   {
+    "month": "2024-03",
+    "value": 305.426
+   },
+   {
+    "month": "2024-04",
+    "value": 305.707
+   },
+   {
+    "month": "2024-05",
+    "value": 305.679
+   },
+   {
+    "month": "2024-06",
+    "value": 305.752
+   },
+   {
+    "month": "2024-07",
+    "value": 306.643
+   },
+   {
+    "month": "2024-08",
+    "value": 306.402
+   },
+   {
+    "month": "2024-09",
+    "value": 307.767
+   },
+   {
+    "month": "2024-10",
+    "value": 308.2
+   },
+   {
+    "month": "2024-11",
+    "value": 307.972
+   },
+   {
+    "month": "2024-12",
+    "value": 308.38
+   },
+   {
+    "month": "2025-01",
+    "value": 310.936
+   },
+   {
+    "month": "2025-02",
+    "value": 311.284
+   },
+   {
+    "month": "2025-03",
+    "value": 312.815
+   },
+   {
+    "month": "2025-04",
+    "value": 311.84
+   },
+   {
+    "month": "2025-05",
+    "value": 312.491
+   },
+   {
+    "month": "2025-06",
+    "value": 313.028
+   },
+   {
+    "month": "2025-07",
+    "value": 313.263
+   },
+   {
+    "month": "2025-08",
+    "value": 314.608
+   },
+   {
+    "month": "2025-09",
+    "value": 316.042
+   },
+   {
+    "month": "2025-11",
+    "value": 313.954
+   },
+   {
+    "month": "2025-12",
+    "value": 315.664
+   },
+   {
+    "month": "2026-01",
+    "value": 317.431
+   },
+   {
+    "month": "2026-02",
+    "value": 318.898
+   },
+   {
+    "month": "2026-03",
+    "value": 318.755
+   },
+   {
+    "month": "2026-04",
+    "value": 320.859
+   },
+   {
+    "month": "2026-05",
+    "value": 321.047
+   },
+   {
+    "month": "2026-06",
+    "value": 321.631
+   },
+   {
+    "month": "2026-07",
+    "value": 321.643
+   },
+   {
+    "month": "2026-08",
+    "value": 321.5
+   },
+   {
+    "month": "2026-09",
+    "value": 321.758
+   },
+   {
+    "month": "2026-10",
+    "value": 322.876
+   }
+  ]
+ },
+ "prices": [
+  {
+   "id": "APU0000708111",
+   "item": "Eggs, grade A, large",
+   "perUnit": {
+    "amount": 12,
+    "family": "count"
+   },
+   "unitLabel": "dozen",
+   "categories": [
+    "en:chicken-eggs",
+    "en:eggs"
+   ],
+   "months": [
+    {
+     "month": "2025-01",
+     "value": 4.953
+    },
+    {
+     "month": "2025-02",
+     "value": 5.897
+    },
+    {
+     "month": "2025-03",
+     "value": 6.227
+    },
+    {
+     "month": "2025-04",
+     "value": 5.122
+    },
+    {
+     "month": "2025-05",
+     "value": 4.548
+    },
+    {
+     "month": "2025-06",
+     "value": 3.775
+    },
+    {
+     "month": "2025-07",
+     "value": 3.599
+    },
+    {
+     "month": "2025-08",
+     "value": 3.587
+    },
+    {
+     "month": "2025-09",
+     "value": 3.488
+    },
+    {
+     "month": "2025-11",
+     "value": 2.86
+    },
+    {
+     "month": "2025-12",
+     "value": 2.712
+    },
+    {
+     "month": "2026-01",
+     "value": 2.577
+    },
+    {
+     "month": "2026-02",
+     "value": 2.5
+    },
+    {
+     "month": "2026-03",
+     "value": 2.348
+    },
+    {
+     "month": "2026-04",
+     "value": 2.25
+    },
+    {
+     "month": "2026-05",
+     "value": 2.191
+    },
+    {
+     "month": "2026-06",
+     "value": 2.141
+    },
+    {
+     "month": "2026-07",
+     "value": 2.189
+    },
+    {
+     "month": "2026-08",
+     "value": 2.272
+    },
+    {
+     "month": "2026-09",
+     "value": 2.272
+    },
+    {
+     "month": "2026-10",
+     "value": 2.32
+    }
+   ]
+  },
+  {
+   "id": "APU0000709112",
+   "item": "Milk, fresh, whole, fortified",
+   "perUnit": {
+    "amount": 3785.4,
+    "family": "ml"
+   },
+   "unitLabel": "gallon",
+   "categories": [
+    "en:whole-milks"
+   ],
+   "months": [
+    {
+     "month": "2025-01",
+     "value": 4.025
+    },
+    {
+     "month": "2025-02",
+     "value": 4.026
+    },
+    {
+     "month": "2025-03",
+     "value": 4.05
+    },
+    {
+     "month": "2025-04",
+     "value": 4.074
+    },
+    {
+     "month": "2025-05",
+     "value": 4.022
+    },
+    {
+     "month": "2025-06",
+     "value": 4.029
+    },
+    {
+     "month": "2025-07",
+     "value": 4.162
+    },
+    {
+     "month": "2025-08",
+     "value": 4.171
+    },
+    {
+     "month": "2025-09",
+     "value": 4.129
+    },
+    {
+     "month": "2025-11",
+     "value": 3.997
+    },
+    {
+     "month": "2025-12",
+     "value": 4.047
+    },
+    {
+     "month": "2026-01",
+     "value": 4.1
+    },
+    {
+     "month": "2026-02",
+     "value": 4.026
+    },
+    {
+     "month": "2026-03",
+     "value": 4.067
+    },
+    {
+     "month": "2026-04",
+     "value": 4.136
+    },
+    {
+     "month": "2026-05",
+     "value": 4.217
+    },
+    {
+     "month": "2026-06",
+     "value": 4.317
+    },
+    {
+     "month": "2026-07",
+     "value": 4.313
+    },
+    {
+     "month": "2026-08",
+     "value": 4.229
+    },
+    {
+     "month": "2026-09",
+     "value": 4.106
+    },
+    {
+     "month": "2026-10",
+     "value": 4.101
+    }
+   ]
+  },
+  {
+   "id": "APU0000702111",
+   "item": "Bread, white, pan",
+   "perUnit": {
+    "amount": 453.6,
+    "family": "g"
+   },
+   "unitLabel": "lb",
+   "categories": [
+    "en:white-breads",
+    "en:white-sandwich-breads"
+   ],
+   "months": [
+    {
+     "month": "2025-01",
+     "value": 1.925
+    },
+    {
+     "month": "2025-02",
+     "value": 1.925
+    },
+    {
+     "month": "2025-03",
+     "value": 1.88
+    },
+    {
+     "month": "2025-04",
+     "value": 1.913
+    },
+    {
+     "month": "2025-05",
+     "value": 1.876
+    },
+    {
+     "month": "2025-06",
+     "value": 1.864
+    },
+    {
+     "month": "2025-07",
+     "value": 1.851
+    },
+    {
+     "month": "2025-08",
+     "value": 1.841
+    },
+    {
+     "month": "2025-09",
+     "value": 1.867
+    },
+    {
+     "month": "2025-11",
+     "value": 1.79
+    },
+    {
+     "month": "2025-12",
+     "value": 1.833
+    },
+    {
+     "month": "2026-01",
+     "value": 1.843
+    },
+    {
+     "month": "2026-02",
+     "value": 1.85
+    },
+    {
+     "month": "2026-03",
+     "value": 1.808
+    },
+    {
+     "month": "2026-04",
+     "value": 1.869
+    },
+    {
+     "month": "2026-05",
+     "value": 1.83
+    },
+    {
+     "month": "2026-06",
+     "value": 1.814
+    },
+    {
+     "month": "2026-07",
+     "value": 1.82
+    },
+    {
+     "month": "2026-08",
+     "value": 1.823
+    },
+    {
+     "month": "2026-09",
+     "value": 1.83
+    },
+    {
+     "month": "2026-10",
+     "value": 1.861
+    }
+   ]
+  },
+  {
+   "id": "APU0000701312",
+   "item": "Rice, white, long grain, uncooked",
+   "perUnit": {
+    "amount": 453.6,
+    "family": "g"
+   },
+   "unitLabel": "lb",
+   "categories": [
+    "en:long-grain-rices",
+    "en:white-rices"
+   ],
+   "months": [
+    {
+     "month": "2025-01",
+     "value": 1.008
+    },
+    {
+     "month": "2025-02",
+     "value": 1.03
+    },
+    {
+     "month": "2025-03",
+     "value": 1.038
+    },
+    {
+     "month": "2025-04",
+     "value": 1.031
+    },
+    {
+     "month": "2025-05",
+     "value": 1.067
+    },
+    {
+     "month": "2025-06",
+     "value": 1.061
+    },
+    {
+     "month": "2025-07",
+     "value": 1.068
+    },
+    {
+     "month": "2025-08",
+     "value": 1.059
+    },
+    {
+     "month": "2025-09",
+     "value": 1.06
+    },
+    {
+     "month": "2025-11",
+     "value": 1.065
+    },
+    {
+     "month": "2025-12",
+     "value": 1.076
+    },
+    {
+     "month": "2026-01",
+     "value": 1.059
+    },
+    {
+     "month": "2026-02",
+     "value": 1.074
+    },
+    {
+     "month": "2026-03",
+     "value": 1.06
+    },
+    {
+     "month": "2026-04",
+     "value": 1.076
+    },
+    {
+     "month": "2026-05",
+     "value": 1.071
+    },
+    {
+     "month": "2026-06",
+     "value": 1.089
+    },
+    {
+     "month": "2026-07",
+     "value": 1.1
+    },
+    {
+     "month": "2026-08",
+     "value": 1.111
+    },
+    {
+     "month": "2026-09",
+     "value": 1.118
+    },
+    {
+     "month": "2026-10",
+     "value": 1.101
+    }
+   ]
+  },
+  {
+   "id": "APU0000717311",
+   "item": "Coffee, 100%, ground roast, all sizes",
+   "perUnit": {
+    "amount": 453.6,
+    "family": "g"
+   },
+   "unitLabel": "lb",
+   "categories": [
+    "en:ground-coffees"
+   ],
+   "months": [
+    {
+     "month": "2025-01",
+     "value": 7.019
+    },
+    {
+     "month": "2025-02",
+     "value": 7.246
+    },
+    {
+     "month": "2025-03",
+     "value": 7.385
+    },
+    {
+     "month": "2025-04",
+     "value": 7.536
+    },
+    {
+     "month": "2025-05",
+     "value": 7.931
+    },
+    {
+     "month": "2025-06",
+     "value": 8.132
+    },
+    {
+     "month": "2025-07",
+     "value": 8.414
+    },
+    {
+     "month": "2025-08",
+     "value": 8.872
+    },
+    {
+     "month": "2025-09",
+     "value": 9.139
+    },
+    {
+     "month": "2025-11",
+     "value": 9.258
+    },
+    {
+     "month": "2025-12",
+     "value": 9.053
+    },
+    {
+     "month": "2026-01",
+     "value": 9.366
+    },
+    {
+     "month": "2026-02",
+     "value": 9.459
+    },
+    {
+     "month": "2026-03",
+     "value": 9.608
+    },
+    {
+     "month": "2026-04",
+     "value": 9.723
+    },
+    {
+     "month": "2026-05",
+     "value": 9.511
+    },
+    {
+     "month": "2026-06",
+     "value": 9.457
+    },
+    {
+     "month": "2026-07",
+     "value": 9.317
+    },
+    {
+     "month": "2026-08",
+     "value": 9.299
+    },
+    {
+     "month": "2026-09",
+     "value": 9.332
+    },
+    {
+     "month": "2026-10",
+     "value": 9.249
+    }
+   ]
+  },
+  {
+   "id": "APU0000715211",
+   "item": "Sugar, white, all sizes",
+   "perUnit": {
+    "amount": 453.6,
+    "family": "g"
+   },
+   "unitLabel": "lb",
+   "categories": [
+    "en:white-sugars",
+    "en:granulated-sugars"
+   ],
+   "months": [
+    {
+     "month": "2025-01",
+     "value": 1.011
+    },
+    {
+     "month": "2025-02",
+     "value": 1.012
+    },
+    {
+     "month": "2025-03",
+     "value": 1.014
+    },
+    {
+     "month": "2025-04",
+     "value": 1.021
+    },
+    {
+     "month": "2025-05",
+     "value": 1.054
+    },
+    {
+     "month": "2025-06",
+     "value": 1.054
+    },
+    {
+     "month": "2025-07",
+     "value": 1.046
+    },
+    {
+     "month": "2025-08",
+     "value": 1.04
+    },
+    {
+     "month": "2025-09",
+     "value": 1.042
+    },
+    {
+     "month": "2025-11",
+     "value": 0.991
+    },
+    {
+     "month": "2025-12",
+     "value": 0.985
+    },
+    {
+     "month": "2026-01",
+     "value": 1.022
+    },
+    {
+     "month": "2026-02",
+     "value": 1.016
+    },
+    {
+     "month": "2026-03",
+     "value": 0.996
+    },
+    {
+     "month": "2026-04",
+     "value": 1.006
+    },
+    {
+     "month": "2026-05",
+     "value": 1.034
+    },
+    {
+     "month": "2026-06",
+     "value": 1.018
+    },
+    {
+     "month": "2026-07",
+     "value": 1.024
+    },
+    {
+     "month": "2026-08",
+     "value": 1.024
+    },
+    {
+     "month": "2026-09",
+     "value": 1.019
+    },
+    {
+     "month": "2026-10",
+     "value": 1.001
+    }
+   ]
+  },
+  {
+   "id": "APU0000710212",
+   "item": "Cheddar cheese, natural",
+   "perUnit": {
+    "amount": 453.6,
+    "family": "g"
+   },
+   "unitLabel": "lb",
+   "categories": [
+    "en:cheddar-cheese"
+   ],
+   "months": [
+    {
+     "month": "2025-01",
+     "value": 5.698
+    },
+    {
+     "month": "2025-02",
+     "value": 5.536
+    },
+    {
+     "month": "2025-03",
+     "value": 5.737
+    },
+    {
+     "month": "2025-04",
+     "value": 5.743
+    },
+    {
+     "month": "2025-05",
+     "value": 5.908
+    },
+    {
+     "month": "2025-06",
+     "value": 5.999
+    },
+    {
+     "month": "2025-07",
+     "value": 6.041
+    },
+    {
+     "month": "2025-08",
+     "value": 6.123
+    },
+    {
+     "month": "2025-09",
+     "value": 6.049
+    },
+    {
+     "month": "2025-11",
+     "value": 5.636
+    },
+    {
+     "month": "2025-12",
+     "value": 5.789
+    },
+    {
+     "month": "2026-01",
+     "value": 5.982
+    },
+    {
+     "month": "2026-02",
+     "value": 5.987
+    },
+    {
+     "month": "2026-03",
+     "value": 5.97
+    },
+    {
+     "month": "2026-04",
+     "value": 6.029
+    },
+    {
+     "month": "2026-05",
+     "value": 5.685
+    },
+    {
+     "month": "2026-06",
+     "value": 5.96
+    },
+    {
+     "month": "2026-07",
+     "value": 5.741
+    },
+    {
+     "month": "2026-08",
+     "value": 5.983
+    },
+    {
+     "month": "2026-09",
+     "value": 6.133
+    },
+    {
+     "month": "2026-10",
+     "value": 6.127
+    }
+   ]
+  },
+  {
+   "id": "APU0000704111",
+   "item": "Bacon, sliced",
+   "perUnit": {
+    "amount": 453.6,
+    "family": "g"
+   },
+   "unitLabel": "lb",
+   "categories": [
+    "en:bacons",
+    "en:sliced-bacons"
+   ],
+   "months": [
+    {
+     "month": "2025-01",
+     "value": 7.044
+    },
+    {
+     "month": "2025-02",
+     "value": 6.798
+    },
+    {
+     "month": "2025-03",
+     "value": 6.978
+    },
+    {
+     "month": "2025-04",
+     "value": 7.009
+    },
+    {
+     "month": "2025-05",
+     "value": 6.985
+    },
+    {
+     "month": "2025-06",
+     "value": 7.098
+    },
+    {
+     "month": "2025-07",
+     "value": 7.118
+    },
+    {
+     "month": "2025-08",
+     "value": 7.208
+    },
+    {
+     "month": "2025-09",
+     "value": 7.29
+    },
+    {
+     "month": "2025-11",
+     "value": 6.928
+    },
+    {
+     "month": "2025-12",
+     "value": 6.76
+    },
+    {
+     "month": "2026-01",
+     "value": 6.978
+    },
+    {
+     "month": "2026-02",
+     "value": 6.904
+    },
+    {
+     "month": "2026-03",
+     "value": 6.801
+    },
+    {
+     "month": "2026-04",
+     "value": 6.826
+    },
+    {
+     "month": "2026-05",
+     "value": 6.712
+    },
+    {
+     "month": "2026-06",
+     "value": 6.561
+    },
+    {
+     "month": "2026-07",
+     "value": 6.584
+    },
+    {
+     "month": "2026-08",
+     "value": 6.605
+    },
+    {
+     "month": "2026-09",
+     "value": 6.756
+    },
+    {
+     "month": "2026-10",
+     "value": 6.686
+    }
+   ]
+  },
+  {
+   "id": "APU0000703112",
+   "item": "Ground beef, 100% beef",
+   "perUnit": {
+    "amount": 453.6,
+    "family": "g"
+   },
+   "unitLabel": "lb",
+   "categories": [
+    "en:ground-beef",
+    "en:minced-beef"
+   ],
+   "months": [
+    {
+     "month": "2025-01",
+     "value": 5.545
+    },
+    {
+     "month": "2025-02",
+     "value": 5.625
+    },
+    {
+     "month": "2025-03",
+     "value": 5.79
+    },
+    {
+     "month": "2025-04",
+     "value": 5.801
+    },
+    {
+     "month": "2025-05",
+     "value": 5.981
+    },
+    {
+     "month": "2025-06",
+     "value": 6.12
+    },
+    {
+     "month": "2025-07",
+     "value": 6.254
+    },
+    {
+     "month": "2025-08",
+     "value": 6.318
+    },
+    {
+     "month": "2025-09",
+     "value": 6.323
+    },
+    {
+     "month": "2025-11",
+     "value": 6.54
+    },
+    {
+     "month": "2025-12",
+     "value": 6.687
+    },
+    {
+     "month": "2026-01",
+     "value": 6.752
+    },
+    {
+     "month": "2026-02",
+     "value": 6.739
+    },
+    {
+     "month": "2026-03",
+     "value": 6.701
+    },
+    {
+     "month": "2026-04",
+     "value": 6.899
+    },
+    {
+     "month": "2026-05",
+     "value": 6.745
+    },
+    {
+     "month": "2026-06",
+     "value": 6.825
+    },
+    {
+     "month": "2026-07",
+     "value": 6.885
+    },
+    {
+     "month": "2026-08",
+     "value": 6.923
+    },
+    {
+     "month": "2026-09",
+     "value": 6.792
+    },
+    {
+     "month": "2026-10",
+     "value": 6.755
+    }
+   ]
+  },
+  {
+   "id": "APU0000710411",
+   "item": "Ice cream, prepackaged, bulk, regular",
+   "perUnit": {
+    "amount": 1892.7,
+    "family": "ml"
+   },
+   "unitLabel": "1/2 gallon",
+   "categories": [
+    "en:ice-creams-tubs",
+    "en:ice-cream-tubs"
+   ],
+   "months": [
+    {
+     "month": "2025-01",
+     "value": 6.459
+    },
+    {
+     "month": "2025-02",
+     "value": 6.255
+    },
+    {
+     "month": "2025-03",
+     "value": 6.328
+    },
+    {
+     "month": "2025-04",
+     "value": 6.229
+    },
+    {
+     "month": "2025-05",
+     "value": 6.466
+    },
+    {
+     "month": "2025-06",
+     "value": 6.493
+    },
+    {
+     "month": "2025-07",
+     "value": 6.374
+    },
+    {
+     "month": "2025-08",
+     "value": 6.505
+    },
+    {
+     "month": "2025-09",
+     "value": 6.396
+    },
+    {
+     "month": "2025-11",
+     "value": 6.138
+    },
+    {
+     "month": "2025-12",
+     "value": 6.403
+    },
+    {
+     "month": "2026-01",
+     "value": 6.236
+    },
+    {
+     "month": "2026-02",
+     "value": 6.264
+    },
+    {
+     "month": "2026-03",
+     "value": 6.191
+    },
+    {
+     "month": "2026-04",
+     "value": 6.24
+    },
+    {
+     "month": "2026-05",
+     "value": 6.045
+    },
+    {
+     "month": "2026-06",
+     "value": 5.953
+    },
+    {
+     "month": "2026-07",
+     "value": 5.836
+    },
+    {
+     "month": "2026-08",
+     "value": 5.854
+    },
+    {
+     "month": "2026-09",
+     "value": 5.931
+    },
+    {
+     "month": "2026-10",
+     "value": 6.032
+    }
+   ]
+  },
+  {
+   "id": "APU0000718311",
+   "item": "Potato chips",
+   "perUnit": {
+    "amount": 453.6,
+    "family": "g"
+   },
+   "unitLabel": "16 oz",
+   "categories": [
+    "en:potato-crisps",
+    "en:potato-chips"
+   ],
+   "months": [
+    {
+     "month": "2025-01",
+     "value": 6.474
+    },
+    {
+     "month": "2025-02",
+     "value": 6.462
+    },
+    {
+     "month": "2025-03",
+     "value": 6.536
+    },
+    {
+     "month": "2025-04",
+     "value": 6.611
+    },
+    {
+     "month": "2025-05",
+     "value": 6.731
+    },
+    {
+     "month": "2025-06",
+     "value": 6.815
+    },
+    {
+     "month": "2025-07",
+     "value": 6.797
+    },
+    {
+     "month": "2025-08",
+     "value": 6.751
+    },
+    {
+     "month": "2025-09",
+     "value": 6.971
+    },
+    {
+     "month": "2025-11",
+     "value": 6.821
+    },
+    {
+     "month": "2025-12",
+     "value": 6.788
+    },
+    {
+     "month": "2026-01",
+     "value": 6.629
+    },
+    {
+     "month": "2026-02",
+     "value": 6.827
+    },
+    {
+     "month": "2026-03",
+     "value": 6.712
+    },
+    {
+     "month": "2026-04",
+     "value": 6.748
+    },
+    {
+     "month": "2026-05",
+     "value": 6.58
+    },
+    {
+     "month": "2026-06",
+     "value": 6.632
+    },
+    {
+     "month": "2026-07",
+     "value": 6.559
+    },
+    {
+     "month": "2026-08",
+     "value": 6.751
+    },
+    {
+     "month": "2026-09",
+     "value": 6.668
+    },
+    {
+     "month": "2026-10",
+     "value": 6.638
+    }
+   ]
+  },
+  {
+   "id": "APU0000711211",
+   "item": "Bananas",
+   "perUnit": {
+    "amount": 453.6,
+    "family": "g"
+   },
+   "unitLabel": "lb",
+   "categories": [
+    "en:bananas"
+   ],
+   "months": [
+    {
+     "month": "2025-01",
+     "value": 0.621
+    },
+    {
+     "month": "2025-02",
+     "value": 0.619
+    },
+    {
+     "month": "2025-03",
+     "value": 0.625
+    },
+    {
+     "month": "2025-04",
+     "value": 0.635
+    },
+    {
+     "month": "2025-05",
+     "value": 0.655
+    },
+    {
+     "month": "2025-06",
+     "value": 0.654
+    },
+    {
+     "month": "2025-07",
+     "value": 0.657
+    },
+    {
+     "month": "2025-08",
+     "value": 0.666
+    },
+    {
+     "month": "2025-09",
+     "value": 0.67
+    },
+    {
+     "month": "2025-11",
+     "value": 0.664
+    },
+    {
+     "month": "2025-12",
+     "value": 0.656
+    },
+    {
+     "month": "2026-01",
+     "value": 0.653
+    },
+    {
+     "month": "2026-02",
+     "value": 0.653
+    },
+    {
+     "month": "2026-03",
+     "value": 0.657
+    },
+    {
+     "month": "2026-04",
+     "value": 0.654
+    },
+    {
+     "month": "2026-05",
+     "value": 0.646
+    },
+    {
+     "month": "2026-06",
+     "value": 0.645
+    },
+    {
+     "month": "2026-07",
+     "value": 0.65
+    },
+    {
+     "month": "2026-08",
+     "value": 0.652
+    },
+    {
+     "month": "2026-09",
+     "value": 0.656
+    },
+    {
+     "month": "2026-10",
+     "value": 0.655
+    }
+   ]
+  },
+  {
+   "id": "APU0000712112",
+   "item": "Potatoes, white",
+   "perUnit": {
+    "amount": 453.6,
+    "family": "g"
+   },
+   "unitLabel": "lb",
+   "categories": [
+    "en:potatoes"
+   ],
+   "months": [
+    {
+     "month": "2025-01",
+     "value": 0.973
+    },
+    {
+     "month": "2025-02",
+     "value": 0.957
+    },
+    {
+     "month": "2025-03",
+     "value": 0.95
+    },
+    {
+     "month": "2025-04",
+     "value": 0.967
+    },
+    {
+     "month": "2025-05",
+     "value": 0.958
+    },
+    {
+     "month": "2025-06",
+     "value": 0.981
+    },
+    {
+     "month": "2025-07",
+     "value": 0.978
+    },
+    {
+     "month": "2025-08",
+     "value": 1.001
+    },
+    {
+     "month": "2025-09",
+     "value": 1.014
+    },
+    {
+     "month": "2025-12",
+     "value": 0.847
+    },
+    {
+     "month": "2026-01",
+     "value": 0.871
+    },
+    {
+     "month": "2026-02",
+     "value": 0.866
+    },
+    {
+     "month": "2026-03",
+     "value": 0.847
+    },
+    {
+     "month": "2026-04",
+     "value": 0.86
+    },
+    {
+     "month": "2026-05",
+     "value": 0.894
+    },
+    {
+     "month": "2026-06",
+     "value": 0.923
+    },
+    {
+     "month": "2026-07",
+     "value": 0.942
+    },
+    {
+     "month": "2026-08",
+     "value": 0.976
+    },
+    {
+     "month": "2026-09",
+     "value": 0.989
+    },
+    {
+     "month": "2026-10",
+     "value": 0.99
+    }
+   ]
+  }
+ ]
+}

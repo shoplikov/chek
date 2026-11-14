@@ -1,0 +1,152 @@
+{
+ "downloadedAt": "2026-11-14",
+ "dateRange": [
+  "2024-07-19",
+  "2026-11-11"
+ ],
+ "perStore": [
+  {
+   "store": "Walmart Supercenter, Mountain View",
+   "id": 3984,
+   "prices": 273
+  },
+  {
+   "store": "Safeway, Mountain View",
+   "id": 3998,
+   "prices": 8439
+  },
+  {
+   "store": "Trader Joe's, Mountain View",
+   "id": 3999,
+   "prices": 332
+  },
+  {
+   "store": "Target, Sunnyvale",
+   "id": 4031,
+   "prices": 390
+  },
+  {
+   "store": "Whole Foods Market, Los Altos",
+   "id": 4058,
+   "prices": 1062
+  },
+  {
+   "store": "Costco, Sunnyvale",
+   "id": 4065,
+   "prices": 134
+  },
+  {
+   "store": "Whole Foods Market, Sunnyvale",
+   "id": 4117,
+   "prices": 2567
+  },
+  {
+   "store": "Costco, Mountain View",
+   "id": 4120,
+   "prices": 669
+  },
+  {
+   "store": "Ava's Market and Deli, Mountain View",
+   "id": 4143,
+   "prices": 396
+  },
+  {
+   "store": "Draeger's, Los Altos",
+   "id": 4152,
+   "prices": 1399
+  },
+  {
+   "store": "Smart & Final extra!, Mountain View",
+   "id": 4190,
+   "prices": 1213
+  },
+  {
+   "store": "Nob Hill Foods, Mountain View",
+   "id": 4191,
+   "prices": 3287
+  },
+  {
+   "store": "99 Ranch Market, Mountain View",
+   "id": 4192,
+   "prices": 190
+  },
+  {
+   "store": "Sprouts Farmers Market, Sunnyvale",
+   "id": 4393,
+   "prices": 1406
+  },
+  {
+   "store": "Grocery Outlet, Sunnyvale",
+   "id": 4471,
+   "prices": 165
+  },
+  {
+   "store": "Mega Mart, Sunnyvale",
+   "id": 4483,
+   "prices": 57
+  },
+  {
+   "store": "La Plaza, Mountain View",
+   "id": 4850,
+   "prices": 147
+  },
+  {
+   "store": "Lucky, Sunnyvale",
+   "id": 4856,
+   "prices": 208
+  },
+  {
+   "store": "J.L. Produce, Mountain View",
+   "id": 4895,
+   "prices": 146
+  },
+  {
+   "store": "Safeway, Mountain View",
+   "id": 5032,
+   "prices": 3366
+  },
+  {
+   "store": "Safeway, Sunnyvale",
+   "id": 6000,
+   "prices": 216
+  }
+ ],
+ "windows": [
+  {
+   "days": 30,
+   "productsAt2PlusStores": 94
+  },
+  {
+   "days": 60,
+   "productsAt2PlusStores": 147
+  },
+  {
+   "days": 90,
+   "productsAt2PlusStores": 229
+  },
+  {
+   "days": 180,
+   "productsAt2PlusStores": 720
+  },
+  {
+   "days": 270,
+   "productsAt2PlusStores": 931
+  },
+  {
+   "days": 365,
+   "productsAt2PlusStores": 2465
+  },
+  {
+   "days": 450,
+   "productsAt2PlusStores": 3928
+  },
+  {
+   "days": 540,
+   "productsAt2PlusStores": 3931
+  },
+  {
+   "days": 730,
+   "productsAt2PlusStores": 3934
+  }
+ ]
+}
