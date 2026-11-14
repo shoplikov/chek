@@ -1,5 +1,5 @@
 import type { Product } from "./catalog";
-import { paidPrice, round2 } from "./findings";
+import { paidPrice, round2 } from "./util";
 import type { Evidence, Match, Pledge, ProvenItem, Receipt, ReceiptLine } from "./types";
 
 /**

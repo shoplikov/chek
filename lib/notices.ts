@@ -1,5 +1,5 @@
 import { CONFIG } from "./config";
-import { round2 } from "./findings";
+import { round2 } from "./util";
 import type { CheckNotice, Receipt } from "./types";
 
 /** Things worth a second look on the receipt itself. Never added to savings. Pure. */

@@ -1,5 +1,5 @@
 import { CONFIG } from "./config";
-import { round2 } from "./findings";
+import { round2 } from "./util";
 
 /** The guarantee counter: proven vs found savings on receipts dated in the current month. Pure. */
 export type CounterReceipt = { purchasedAt: string | null; scannedAt: string; provenSaving: number; headlineSaving: number };

@@ -4,11 +4,8 @@ import type { Evidence, Finding, Match, Receipt, ReceiptLine } from "./types";
 
 /** Pure rule functions. Every amount here is computed from the receipt and reference data. */
 
-export const round2 = (n: number) => Math.round(n * 100) / 100;
-export const money = (n: number) => `$${n.toFixed(2)}`;
-
-/** What one unit on this line cost after discounts. */
-export const paidPrice = (l: ReceiptLine) => (l.lineTotal - l.discount) / (l.qty || 1);
+import { money, paidPrice, round2 } from "./util";
+export { money, paidPrice, round2 };
 
 /** Paid price per 100 g / 100 ml, when the product's pack size is known. */
 export const paidUnitPrice = (l: ReceiptLine, p: Product | undefined) =>
@@ -63,8 +60,10 @@ export function cheaperElsewhere({ line, match, catalog, storeLocationIds, refDa
   const saving = round2((paid - best.price) * line.qty);
   if (saving <= 0) return null;
   const ev = opEvidence(catalog, best);
+  const prod = catalog.products.get(match.productCode);
   return {
     type: "cheaper_elsewhere", line: line.line, productCode: match.productCode, targetStore: ev.sourceLabel,
+    paid: round2(paid), paidUnit: paidUnitPrice(line, prod), productName: prod?.name ?? null, categoryTag: prod ? specificCategory(prod) : null,
     savingOnThisReceipt: saving, evidence: ev,
     headline: `${ev.productName ?? line.rawName} was ${money(best.price)} at ${ev.sourceLabel} (you paid ${money(paid)}).`,
   };
@@ -99,6 +98,7 @@ export function cheaperSwap({ line, match, catalog, storeLocationIds, refDate }:
   const ev = opEvidence(catalog, best.o, `${money(best.o.unitPrice!)} ${unit}`);
   return {
     type: "cheaper_swap", line: line.line, productCode: bought.code, targetProductCode: best.p.code,
+    paid: round2(paidPrice(line)), paidUnit: paidUnit, productName: bought.name, targetName: best.p.name, categoryTag: cat,
     savingOnThisReceipt: saving, evidence: ev,
     headline: `${best.p.name} costs ${money(best.o.unitPrice!)} ${unit} at this store; you paid ${money(paidUnit)} ${unit} for ${bought.name}.`,
   };
@@ -123,6 +123,7 @@ export function priceUp(input: RuleInput, history: HistoryLine[]): Finding | nul
   if (saving <= 0) return null;
   return {
     type: "price_up", line: line.line, productCode: match?.productCode ?? null, savingOnThisReceipt: saving,
+    paid: round2(now), paidUnit: null, productName: match?.productCode ? input.catalog.products.get(match.productCode)?.name ?? null : null,
     evidence: {
       sourceType: "own_receipt", sourceRef: `receipt:${prev.receipt.id}:line:${prev.line.line}`,
       sourceLabel: `Your receipt, ${prev.receipt.store.name}`, observedAt: prev.receipt.purchasedAt!, price: round2(then),
@@ -153,6 +154,7 @@ export function aboveUsAverage({ line, match, catalog }: RuleInput): Finding | n
   if (saving <= 0) return null;
   return {
     type: "above_us_average", line: line.line, productCode: p.code, savingOnThisReceipt: saving,
+    paid: round2(paidPrice(line)), paidUnit: paidUnitPrice(line, p), productName: p.name,
     evidence: {
       sourceType: "bls", sourceRef: series.id, sourceLabel: "BLS US city average",
       observedAt: latest.month, price: latest.value, unit: `per ${series.unitLabel}`,

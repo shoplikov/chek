@@ -27,6 +27,11 @@ export type Finding = {
   productCode: string | null;          // what was bought (null for rawName-only price_up)
   targetProductCode?: string;          // cheaper_swap: the cheaper product
   targetStore?: string;                // cheaper_elsewhere: the cheaper store
+  paid: number;                        // price paid per item on this line
+  paidUnit: number | null;             // per 100 g / 100 ml when the pack size is known
+  productName: string | null;          // catalog name of what was bought
+  targetName?: string;                 // cheaper_swap: catalog name of the cheaper product
+  categoryTag?: string | null;
 };
 // A finding the user chose to act on. Stored in localStorage, sent with later scans.
 export type Pledge = {

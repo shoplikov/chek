@@ -1,5 +1,5 @@
 import { CONFIG } from "./config";
-import { paidPrice } from "./findings";
+import { paidPrice } from "./util";
 import type { Receipt, Match } from "./types";
 
 /** Personal grocery inflation from the user's own receipts, next to BLS food-at-home CPI. Pure. */
