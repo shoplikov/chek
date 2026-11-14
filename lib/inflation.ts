@@ -46,10 +46,12 @@ export function personalInflation(history: ReceiptWithMatches[], cpi: { month: s
   }
   if (!best) return { ok: false, reason: "not enough history yet" };
   const from = best.early.receipt.purchasedAt!, to = best.late.receipt.purchasedAt!;
-  const fromMonth = from.slice(0, 7), toMonth = to.slice(0, 7);
-  const f = cpi.find(c => c.month === fromMonth), t = cpi.find(c => c.month === toMonth);
+  // The same two months from BLS; if the later month is not published yet, the latest month
+  // that is (the UI names the months used).
+  const atOrBefore = (m: string) => [...cpi].filter(c => c.month <= m).sort((a, b) => b.month.localeCompare(a.month))[0];
+  const f = atOrBefore(from.slice(0, 7)), t = atOrBefore(to.slice(0, 7));
   return {
     ok: true, personal: best.now / best.then - 1, common: best.common, from, to,
-    official: f && t && fromMonth !== toMonth ? { change: t.value / f.value - 1, fromMonth, toMonth } : null,
+    official: f && t && f.month !== t.month ? { change: t.value / f.value - 1, fromMonth: f.month, toMonth: t.month } : null,
   };
 }

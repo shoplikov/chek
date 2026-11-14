@@ -121,7 +121,7 @@ export default function HistoryClient({ cpi, cpiId }: { cpi: { month: string; va
           <>
             <p className="mt-1 text-sm">Your groceries: <b className="tabular">{pct(inflation.personal)}</b> ({inflation.from} → {inflation.to}, {inflation.common} products bought both times).</p>
             {inflation.official
-              ? <p className="text-sm">Official food-at-home inflation: <b className="tabular">{pct(inflation.official.change)}</b>, BLS {cpiId}, {monthName(inflation.official.fromMonth)}–{monthName(inflation.official.toMonth)}.</p>
+              ? <p className="text-sm">Official food-at-home inflation: <b className="tabular">{pct(inflation.official.change)}</b>, BLS {cpiId}, {monthName(inflation.official.fromMonth)}–{monthName(inflation.official.toMonth)}{inflation.official.toMonth < inflation.to.slice(0, 7) ? " (latest month published)" : ""}.</p>
               : <p className="text-sm text-muted">BLS has not published the official figure for these months yet.</p>}
           </>
         ) : (
