@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "tsx --test lib/*.test.ts"
+    "test": "tsx --test lib/*.test.ts",
+    "eval:parse": "tsx scripts/eval-parse.mts",
+    "eval:match": "tsx scripts/eval-match.mts",
+    "smoke": "tsx scripts/smoke.mts"
   },
   "dependencies": {
     "next": "15.5.29",
