@@ -148,3 +148,20 @@ Thresholds are in `lib/config.ts`. Swaps still show both product names so the us
 - The GPU instance (`g4dn.xlarge`) suggested for self-hosting a model was not used: the OpenAI
   key was available and gives better receipt reading than an open model that fits a T4. The
   `OPENAI_BASE_URL` switch keeps that option open.
+
+## Final checks (2026-11-15, morning)
+
+- Transcriptions are cached per instance by a hash of the image bytes: the same photo gives the
+  same lines, and only scans needing a new transcription count toward the per-IP limit (a jury
+  sharing one venue network can re-open samples freely).
+- Uploads are downsized in the browser to 2048 px on the long side (was 1600), the most the
+  vision model uses, so long receipts keep small print legible.
+- Upload path tested through the live UI with synthetic phone photos (a sample receipt on a
+  textured background, tilted 4–6°, uneven light, blur and noise, 3024×4032): read in full, sum
+  check passed, about 9 s uncached. Not a substitute for a real photographed receipt.
+- Swap rule: whole families (`en:cheeses`, `en:milks`, `en:meats`, `en:prepared-meats`, fish) are
+  too broad, and process words ("uncured", "smoked", "sweetened"…) do not count as a shared name
+  word. Removed "feta → ricotta" and "beef hot dog → gouda sausage" comparisons.
+- Acceptance re-run on the live URL with headless Chromium at 390 px: all section 17 items pass,
+  including pledge removal, "Clear demo data", Week 2 without pledges, non-receipt photo, the store
+  outside the area and the footer on every page.

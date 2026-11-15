@@ -149,7 +149,9 @@ Requires Node 20+. Environment variables are listed in `.env.example`.
 - "Cheaper similar product" relies on Open Food Facts categories; it requires a specific category,
   a shared name word and a comparable pack size, and shows both products so you can judge.
 - Proven savings need a later receipt.
-- Per-instance rate limit (20 scans per 10 minutes per IP); the hard limit is the spend cap on the key.
+- Per-instance rate limit: 20 new transcriptions per 10 minutes per IP. Re-scanning a photo or sample
+  already read on the server reuses its transcription and does not count. The hard limit is the spend
+  cap on the key.
 
 ## Licences and credits
 
