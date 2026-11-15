@@ -2,8 +2,11 @@
 import { store } from "@/lib/store";
 import type { ScanResult, StoredReceipt } from "@/lib/types";
 
-/** Downsize a photo to at most 1600 px on the long side, as JPEG, before upload. */
-export async function downsize(file: File, maxSide = 1600): Promise<Blob> {
+/**
+ * Downsize a photo to at most 2048 px on the long side, as JPEG, before upload. 2048 is the most
+ * the vision model uses; a long receipt keeps small print legible at that size.
+ */
+export async function downsize(file: File, maxSide = 2048): Promise<Blob> {
   const bmp = await createImageBitmap(file).catch(() => null);
   if (!bmp) return file;
   const scale = Math.min(1, maxSide / Math.max(bmp.width, bmp.height));

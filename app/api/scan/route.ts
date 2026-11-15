@@ -2,7 +2,7 @@ import { z } from "zod";
 import { CONFIG } from "@/lib/config";
 import { clientIp, MESSAGES, rateLimited } from "@/lib/guard";
 import { LlmError } from "@/lib/llm";
-import { NotAReceiptError, parseReceipt } from "@/lib/parse";
+import { isParseCached, NotAReceiptError, parseReceipt } from "@/lib/parse";
 import { sampleImage } from "@/lib/samples";
 import { analyse } from "@/lib/scan";
 import type { Match, Pledge, Receipt } from "@/lib/types";
@@ -18,7 +18,6 @@ const History = z.array(z.object({ receipt: z.custom<Receipt>(v => !!v && typeof
 const Pledges = z.array(z.custom<Pledge>(v => !!v && typeof v === "object")).max(CONFIG.PLEDGE_MAX_ACTIVE);
 
 export async function POST(req: Request) {
-  if (rateLimited(clientIp(req))) return fail(429, MESSAGES.rate);
   const len = Number(req.headers.get("content-length") ?? 0);
   if (len > CONFIG.MAX_IMAGE_BYTES + 1_000_000) return fail(413, MESSAGES.tooBig);
 
@@ -47,6 +46,9 @@ export async function POST(req: Request) {
   }
   const history = History.safeParse(historyRaw), pledges = Pledges.safeParse(pledgesRaw);
   if (!history.success || !pledges.success) return fail(400, MESSAGES.badRequest);
+  // Only scans that need a new transcription count toward the limit: re-opening a sample or a
+  // photo already read on this server costs no model call, so a shared venue network is not blocked.
+  if (!isParseCached(image.base64, image.mime, isSample) && rateLimited(clientIp(req))) return fail(429, MESSAGES.rate);
 
   try {
     const receipt = await parseReceipt(image.base64, image.mime, isSample);

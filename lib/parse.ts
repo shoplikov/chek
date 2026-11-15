@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { randomUUID } from "node:crypto";
+import { createHash, randomUUID } from "node:crypto";
 import { z } from "zod";
 import { CONFIG } from "./config";
 import { callJSON, imagePart, PARSE_MODEL } from "./llm";
@@ -55,7 +55,27 @@ function toReceipt(p: Parsed, isSample: boolean): Omit<Receipt, "sumCheckPassed"
 }
 
 /** One vision call; if the receipt does not add up, one retry with the mismatch stated. */
+// ponytail: per-instance cache of transcriptions, keyed by the image bytes. The same photo gives the
+// same lines (and the same headline), and re-scanning it costs no model call. Bounded; oldest out.
+const parsed = new Map<string, Omit<Receipt, "id">>();
+const imageKey = (b64: string, mime: string, isSample: boolean) =>
+  createHash("sha256").update(`${mime}|${isSample}|`).update(b64).digest("hex");
+
+/** True when this exact image was already transcribed on this instance (no model call needed). */
+export const isParseCached = (b64: string, mime: string, isSample: boolean) => parsed.has(imageKey(b64, mime, isSample));
+
 export async function parseReceipt(imageBase64: string, mime: string, isSample: boolean): Promise<Receipt> {
+  const key = imageKey(imageBase64, mime, isSample);
+  const hit = parsed.get(key);
+  if (hit) return { ...structuredClone(hit), id: randomUUID() };
+  const r = await parseReceiptUncached(imageBase64, mime, isSample);
+  const { id: _id, ...rest } = r;
+  parsed.set(key, structuredClone(rest));
+  if (parsed.size > 300) parsed.delete(parsed.keys().next().value!);
+  return r;
+}
+
+async function parseReceiptUncached(imageBase64: string, mime: string, isSample: boolean): Promise<Receipt> {
   const system = prompt();
   const image = imagePart(imageBase64, mime);
   const first = await callJSON(system, [image, { type: "text", text: "Transcribe this receipt." }], ParsedReceipt, "receipt", parseEffort());
