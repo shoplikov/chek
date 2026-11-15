@@ -1,6 +1,7 @@
 /** npm run eval:parse — every sample image through the live parser; sum check and total accuracy. */
 import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { parseReceipt } from "../lib/parse";
+import { PARSE_MODEL, MATCH_MODEL, usage } from "../lib/llm";
 import { listSamples } from "../lib/samples";
 
 type Row = { id: string; sumCheck: boolean; totalOk: boolean; lines: string; ms: number };
@@ -31,3 +32,4 @@ if (real.length) {
   console.table(real);
   console.log(`Real photos: sum check passed ${share(real.map(r => r.sumCheck))}`);
 }
+console.log(`parse ${PARSE_MODEL}, match ${MATCH_MODEL}; tokens over ${usage.calls} calls: input ${usage.input} (cached ${usage.cachedInput}), output ${usage.output}`);

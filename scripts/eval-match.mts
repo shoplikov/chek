@@ -8,6 +8,7 @@ import { readFileSync } from "node:fs";
 import { getCatalog, resolveStore } from "../lib/catalog";
 import { matchReceipt } from "../lib/match";
 import { parseReceipt } from "../lib/parse";
+import { PARSE_MODEL, MATCH_MODEL, usage } from "../lib/llm";
 import { listSamples } from "../lib/samples";
 
 const c = getCatalog();
@@ -41,3 +42,4 @@ console.table(rows);
 const precision = tp / Math.max(1, tp + fp), recall = tp / Math.max(1, truthCount);
 console.log(`precision ${(precision * 100).toFixed(1)}% (wrong matches ${(100 - precision * 100).toFixed(1)}%), recall ${(recall * 100).toFixed(1)}%`);
 for (const w of wrong) console.log("  wrong:", w);
+console.log(`parse ${PARSE_MODEL}, match ${MATCH_MODEL}; tokens over ${usage.calls} calls: input ${usage.input} (cached ${usage.cachedInput}), output ${usage.output}`);

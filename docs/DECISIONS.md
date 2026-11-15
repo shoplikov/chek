@@ -74,8 +74,27 @@ Public URL: https://54-163-135-214.nip.io. Remove everything with `scripts/teard
 
 ## Model and matching
 
-- Model: `gpt-5.5` for both calls (parse: default effort; match: `reasoning_effort: low`).
-  Measured: parse about 5–7 s per sample, match about 3–4 s.
+- Models (changed on 2026-11-15 to cut cost): parse uses `gpt-5.5` with `reasoning_effort: low`;
+  match uses `gpt-5.4-mini` with `reasoning_effort: low`. Override with `LLM_PARSE_MODEL`,
+  `LLM_MATCH_MODEL`, `PARSE_EFFORT`, `MATCH_EFFORT`; `LLM_MODEL` sets both.
+- Measured on the 5 samples (token counts × OpenAI list price):
+
+  | Setup | Precision | Recall | Scan time | Cost per scan |
+  |---|---|---|---|---|
+  | `gpt-5.5` for both (before) | 98.1% | 89.5% | 9–10 s | ~$0.056 |
+  | **`gpt-5.5` parse + `gpt-5.4-mini` match (now)** | 96–98% (3 runs) | 91–95% | 8–10 s | ~$0.029 |
+  | `gpt-5.5` parse + `gpt-5-mini` match | 96.4% | 93.0% | 14–19 s | ~$0.025 |
+  | `gpt-5.4-mini` for both | 87% (parse sometimes adds a line) | 82.5% | — | ~$0.010 |
+  | `gpt-5-mini` for both | 96.3% | 91.2% | parse alone ~20 s | ~$0.007 |
+  | `gpt-5.4-nano` for both | 82.7% | 75.4% | — | — |
+
+  Matching is about two thirds of the input tokens, so a cheaper match model halves the cost
+  without slowing the scan. Reading the photo stays on the stronger model: the mini models
+  passed the sum check less reliably, and real phone photos are harder than the samples.
+- Amazon Bedrock as the provider (checked 2026-11-15): models are listed in us-east-1, but every
+  call is throttled or refused. The account's Bedrock on-demand quotas are 0 (for example "Model
+  invocation max tokens per day for Amazon Nova 2 Lite" = 0), and Anthropic and OpenAI models on
+  Bedrock return "not available for this account". A quota increase is a support request.
 - Each candidate shown to the matcher includes its observed price at the receipt's store when
   one exists. This fixed a size mix-up (two Pop-Tarts pack sizes) without loosening guards.
 - `eval:match` counts a match as correct when it is the true barcode or a product with the same

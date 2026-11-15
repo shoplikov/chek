@@ -3,7 +3,13 @@ import { join } from "node:path";
 import { z } from "zod";
 import { CONFIG } from "./config";
 import type { Catalog, Product } from "./catalog";
-import { callJSON } from "./llm";
+import { callJSON, MATCH_MODEL } from "./llm";
+
+/** MATCH_EFFORT=minimal|low|medium (default low). */
+const matchEffort = (): "minimal" | "low" | "medium" => {
+  const e = process.env.MATCH_EFFORT;
+  return e === "minimal" || e === "medium" ? e : "low";
+};
 import { paidPrice } from "./findings";
 import type { Match, Receipt, ReceiptLine } from "./types";
 
@@ -116,7 +122,7 @@ export async function matchReceipt(c: Catalog, r: Receipt, storeLocationIds: num
         return `Line ${l.line}: "${l.rawName}" paid $${paidPrice(l).toFixed(2)} each${unit}\nCandidates:\n${list}`;
       }).join("\n\n");
       const system = readFileSync(join(process.cwd(), "prompts", "match.md"), "utf8");
-      const res = await callJSON(system, `Store: ${r.store.name}${r.store.city ? `, ${r.store.city}` : ""}\n\n${body}\n\nFor each line, \`choice\` is the candidate number or null.`, Pick, "matches", { effort: "low" });
+      const res = await callJSON(system, `Store: ${r.store.name}${r.store.city ? `, ${r.store.city}` : ""}\n\n${body}\n\nFor each line, \`choice\` is the candidate number or null.`, Pick, "matches", { effort: matchEffort(), model: MATCH_MODEL });
       picks = res.lines;
     }
     for (const m of applyGuards(c, todo, cands, picks)) {

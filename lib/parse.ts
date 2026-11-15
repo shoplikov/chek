@@ -3,7 +3,13 @@ import { join } from "node:path";
 import { randomUUID } from "node:crypto";
 import { z } from "zod";
 import { CONFIG } from "./config";
-import { callJSON, imagePart } from "./llm";
+import { callJSON, imagePart, PARSE_MODEL } from "./llm";
+
+/** PARSE_EFFORT=minimal|low|medium (default low) for the first read; the retry keeps the model default. */
+const parseEffort = (): { model: string; effort?: "minimal" | "low" | "medium" } => {
+  const e = process.env.PARSE_EFFORT;
+  return { model: PARSE_MODEL, effort: e === "minimal" || e === "medium" ? e : "low" };
+};
 import type { Receipt, ReceiptLine } from "./types";
 
 const ParsedReceipt = z.object({
@@ -52,7 +58,7 @@ function toReceipt(p: Parsed, isSample: boolean): Omit<Receipt, "sumCheckPassed"
 export async function parseReceipt(imageBase64: string, mime: string, isSample: boolean): Promise<Receipt> {
   const system = prompt();
   const image = imagePart(imageBase64, mime);
-  const first = await callJSON(system, [image, { type: "text", text: "Transcribe this receipt." }], ParsedReceipt, "receipt");
+  const first = await callJSON(system, [image, { type: "text", text: "Transcribe this receipt." }], ParsedReceipt, "receipt", parseEffort());
   if (!first.isReceipt || first.lines.length === 0) throw new NotAReceiptError();
   let r = toReceipt(first, isSample);
   let check = sumCheck(r);
@@ -60,7 +66,7 @@ export async function parseReceipt(imageBase64: string, mime: string, isSample: 
     const retry = await callJSON(system, [
       image,
       { type: "text", text: `Transcribe this receipt. A previous transcription did not add up (${check.detail}). Re-read every line, discount and the totals carefully.` },
-    ], ParsedReceipt, "receipt");
+    ], ParsedReceipt, "receipt", { model: PARSE_MODEL });
     if (retry.isReceipt && retry.lines.length) {
       const r2 = toReceipt(retry, isSample);
       const c2 = sumCheck(r2);

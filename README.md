@@ -79,13 +79,14 @@ matching, findings, pledge checks, the guarantee counter and inflation are all c
 |---|---|---|
 | Parse: sum check passes | 5 / 5 | `npm run eval:parse` |
 | Parse: parsed total equals known total | 5 / 5 | `npm run eval:parse` |
-| Parse: median time per receipt | 5.6 s | `npm run eval:parse` |
-| Match precision (target: wrong matches under 5%) | 98.1% (1 wrong of 52) | `npm run eval:match` |
-| Match recall | 89.5% | `npm run eval:match` |
+| Parse: median time per receipt | 4.8 s | `npm run eval:parse` |
+| Match precision (target: wrong matches under 5%) | 96–98% over 3 runs (1–2 wrong of ~55) | `npm run eval:match` |
+| Match recall | 91–95% | `npm run eval:match` |
+| Model cost per scan (token counts × list price) | about $0.03 | both evals print token totals |
 | Unit tests | 30 passing | `npm test` |
 
-The one wrong match: two sizes of the same Pop-Tarts at a store outside the demo area, where no
-store price was available to tell them apart. Put real receipt photos in `eval/real/` (git-ignored) and
+Typical wrong matches: two sizes of the same Pop-Tarts at a store outside the demo area, where no
+store price was available to tell them apart, and two flavours of the same Daiya pizza. Put real receipt photos in `eval/real/` (git-ignored) and
 `npm run eval:parse` reports them separately.
 
 ## Paywall and return loop
@@ -129,8 +130,10 @@ Requires Node 20+. Environment variables are listed in `.env.example`.
 
 ## Key dependencies
 
-- LLM: OpenAI (`gpt-5.5`) through the official `openai` SDK with strict JSON-schema output. Any
-  OpenAI-compatible endpoint can be set with `OPENAI_BASE_URL`. See `docs/DECISIONS.md` for why not Claude.
+- LLM: OpenAI through the official `openai` SDK with strict JSON-schema output: `gpt-5.5` reads the
+  photo, `gpt-5.4-mini` picks the product from the candidates. Models are set by `LLM_PARSE_MODEL` /
+  `LLM_MATCH_MODEL`, and any OpenAI-compatible endpoint by `OPENAI_BASE_URL`. See `docs/DECISIONS.md`
+  for why not Claude or Bedrock.
 - Next.js 15, React 19, Tailwind 4, zod. Stripe (test mode, optional).
 - Hosting: one AWS EC2 instance running the Docker image behind Caddy (automatic HTTPS).
 
@@ -140,7 +143,9 @@ Requires Node 20+. Environment variables are listed in `.env.example`.
   only your own history and BLS averages are compared.
 - Reference observations are up to 100 days old (the smallest window that keeps 300+ products priced
   at 2+ stores). The observation date is always shown next to a price.
-- Matching prefers no match to a wrong match, so some lines stay unmatched (recall about 90% on samples).
+- Matching prefers no match to a wrong match, so some lines stay unmatched (recall 91–95% on samples).
+  Ambiguous abbreviations can be matched differently on a first scan; repeat scans on the same
+  server reuse the cached match.
 - "Cheaper similar product" relies on Open Food Facts categories; it requires a specific category,
   a shared name word and a comparable pack size, and shows both products so you can judge.
 - Proven savings need a later receipt.
