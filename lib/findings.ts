@@ -36,7 +36,10 @@ function opEvidence(c: Catalog, o: PriceObs, unit?: string): Evidence {
   };
 }
 
-const STOP = new Set(["and", "with", "the", "of", "in", "a", "organic", "natural", "original", "classic", "style", "flavor", "flavored", "oz", "fl", "lb", "pack", "free"]);
+const STOP = new Set(["and", "with", "the", "of", "in", "a", "organic", "natural", "original", "classic", "style", "flavor", "flavored", "oz", "fl", "lb", "pack", "free",
+  // how it is made or sold, not what it is: "uncured" alone does not make a sausage a hot dog
+  "uncured", "cured", "smoked", "sweetened", "unsweetened", "salted", "unsalted", "reduced", "low", "fat",
+  "sugar", "sodium", "added", "premium", "traditional", "old", "world", "gluten", "sliced", "fresh", "family", "size"]);
 /** Descriptive words of a product name, brand words removed. */
 export const nameWords = (p: Product) => {
   const brand = new Set((p.brands ?? "").toLowerCase().split(/[^a-z]+/));
