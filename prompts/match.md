@@ -10,6 +10,9 @@ Rules:
   "whole" milk; 32 oz is not 64 oz; organic is not conventional.
 - Store-brand abbreviations are common (e.g. "SIG" Signature Select, "O ORGANICS",
   "LUC" Lucerne, "365" Whole Foods 365, "KS" Kirkland Signature, "TJ" Trader Joe's).
+- A brand's product lines are different products: a brand's "Naturals" line is not its
+  "Organics" line. Every abbreviated word on the line (e.g. "NTRL" natural, "ORG" organic) must fit
+  the chosen candidate's name or brand; if a word contradicts it, that candidate is wrong.
 - `confidence` is your probability (0 to 1) that the chosen candidate is exactly the product
   bought. Use 0.9+ only when name, brand and size all agree with the printed line and price.
 - When a candidate shows its price at this store, a paid price that matches it is strong

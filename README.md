@@ -80,13 +80,13 @@ matching, findings, pledge checks, the guarantee counter and inflation are all c
 | Parse: sum check passes | 5 / 5 | `npm run eval:parse` |
 | Parse: parsed total equals known total | 5 / 5 | `npm run eval:parse` |
 | Parse: median time per receipt | 4.8 s | `npm run eval:parse` |
-| Match precision (target: wrong matches under 5%) | 96–98% over 3 runs (1–2 wrong of ~55) | `npm run eval:match` |
-| Match recall | 91–95% | `npm run eval:match` |
+| Match precision (target: wrong matches under 5%) | 98.2% (1 wrong of 56) | `npm run eval:match` |
+| Match recall | 96.5% | `npm run eval:match` |
 | Model cost per scan (token counts × list price) | about $0.03 | both evals print token totals |
 | Unit tests | 30 passing | `npm test` |
 
-Typical wrong matches: two sizes of the same Pop-Tarts at a store outside the demo area, where no
-store price was available to tell them apart, and two flavours of the same Daiya pizza. Put real receipt photos in `eval/real/` (git-ignored) and
+The one wrong match: two sizes of the same Pop-Tarts at a store outside the demo area, where no
+store price was available to tell them apart. (Earlier runs also mixed up two Daiya pizza flavours.) Put real receipt photos in `eval/real/` (git-ignored) and
 `npm run eval:parse` reports them separately.
 
 ## Paywall and return loop
@@ -143,7 +143,7 @@ Requires Node 20+. Environment variables are listed in `.env.example`.
   only your own history and BLS averages are compared.
 - Reference observations are up to 100 days old (the smallest window that keeps 300+ products priced
   at 2+ stores). The observation date is always shown next to a price.
-- Matching prefers no match to a wrong match, so some lines stay unmatched (recall 91–95% on samples).
+- Matching prefers no match to a wrong match, so some lines stay unmatched (recall about 95% on samples).
   Ambiguous abbreviations can be matched differently on a first scan; repeat scans on the same
   server reuse the cached match.
 - "Cheaper similar product" relies on Open Food Facts categories; it requires a specific category,
