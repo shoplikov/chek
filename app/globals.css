@@ -1,15 +1,18 @@
 @import "tailwindcss";
 
+/* Chek: a receipt on a counter. Paper slips on cool grey, ink, a ledger green,
+   and a highlighter for the money you could keep. */
 :root {
-  --bg: #f6f5f1;
+  --bg: #e8ebe7;
   --card: #ffffff;
-  --ink: #1c1d1f;
-  --muted: #62666d;
-  --line: #e3e1da;
-  --accent: #0f7b4f;
-  --accent-soft: #e4f3ec;
-  --warn: #a4570a;
-  --warn-soft: #fbf0e2;
+  --ink: #13201a;
+  --muted: #56625b;
+  --line: #d9ddd7;
+  --accent: #11683f;
+  --accent-soft: #e2f0e7;
+  --hl: #ffe24d;
+  --warn: #b0442a;
+  --warn-soft: #fbece6;
 }
 
 @theme inline {
@@ -20,17 +23,55 @@
   --color-line: var(--line);
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
+  --color-hl: var(--hl);
   --color-warn: var(--warn);
   --color-warn-soft: var(--warn-soft);
-  --font-sans: var(--font-inter);
-  --font-mono: var(--font-mono-face);
+  --font-sans: var(--font-ui);
+  --font-mono: var(--font-receipt);
 }
 
 body {
   background: var(--bg);
   color: var(--ink);
-  font-family: var(--font-inter), system-ui, sans-serif;
+  font-family: var(--font-ui), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
 .tabular { font-variant-numeric: tabular-nums; }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* A highlighter stroke behind text: slightly uneven ends, wraps across lines. */
+.hl {
+  background: linear-gradient(100deg, transparent 0.25em, var(--hl) 0.35em, var(--hl) calc(100% - 0.3em), transparent calc(100% - 0.2em));
+  padding: 0 0.35em;
+  margin: 0 -0.1em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* Thermal receipt paper with a torn zigzag bottom edge. Shadow sits on .slip-wrap
+   because a mask clips box-shadow. */
+.slip-wrap { filter: drop-shadow(0 1px 0 rgb(19 32 26 / 0.08)) drop-shadow(0 8px 14px rgb(19 32 26 / 0.08)); }
+.slip {
+  --z: 7px;
+  background: var(--card);
+  padding-bottom: calc(var(--z) + 1.25rem);
+  -webkit-mask:
+    linear-gradient(#000 0 0) top / 100% calc(100% - var(--z)) no-repeat,
+    conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom / calc(2 * var(--z)) var(--z) repeat-x;
+  mask:
+    linear-gradient(#000 0 0) top / 100% calc(100% - var(--z)) no-repeat,
+    conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom / calc(2 * var(--z)) var(--z) repeat-x;
+}
+
+/* Dotted leader between a receipt label and its amount. */
+.leader { flex: 1; min-width: 1rem; border-bottom: 2px dotted var(--line); transform: translateY(-0.3em); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .print-in { animation: print-in 520ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+  @keyframes print-in {
+    from { clip-path: inset(0 0 100% 0); transform: translateY(-6px); }
+    to { clip-path: inset(0 0 0 0); transform: none; }
+  }
+}

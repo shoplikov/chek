@@ -29,8 +29,8 @@ function Success() {
           <h1 className="text-xl font-semibold">Unlocked.</h1>
           <p className="mt-1 text-sm text-muted">All findings, the proven-savings breakdown and your inflation history are now visible in this browser.</p>
           <div className="mt-4 flex flex-col sm:flex-row gap-2 justify-center">
-            {last && <Link href={`/result?id=${encodeURIComponent(last)}`} className="rounded-xl bg-accent px-4 py-2.5 text-sm font-medium text-white">Back to your receipt</Link>}
-            <Link href="/history" className="rounded-xl border border-line px-4 py-2.5 text-sm font-medium">History</Link>
+            {last && <Link href={`/result?id=${encodeURIComponent(last)}`} className="rounded-lg bg-accent px-4 py-2.5 text-sm font-medium text-white">Back to your receipt</Link>}
+            <Link href="/history" className="rounded-lg border border-line px-4 py-2.5 text-sm font-medium">History</Link>
           </div>
         </>
       )}

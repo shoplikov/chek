@@ -45,36 +45,44 @@ function ResultView({ r, unlocked, pledges }: { r: StoredReceipt; unlocked: bool
 
   return (
     <div className="space-y-4">
-      <div className="flex flex-wrap items-center gap-2 text-sm text-muted">
-        <span className="font-medium text-ink">{displayName(receipt.store.name)}{receipt.store.city ? `, ${displayName(receipt.store.city)}` : ""}</span>
-        <span>·</span><span>{receipt.purchasedAt ?? "no date printed"}</span>
-        <span>·</span><span className="tabular">{money(receipt.total)}</span>
-        {receipt.isSample && <Badge>Sample</Badge>}
-      </div>
-
       {r.proven.length > 0 && <ProvenBlock items={r.proven} total={r.provenSaving} />}
 
-      <Card>
-        {noData ? (
-          <>
-            <h1 className="text-xl font-semibold">No price data for this store yet.</h1>
-            <p className="mt-1 text-sm text-muted">Your history starts now. We read the receipt and saved it in this browser; the next receipt from this store can show price changes.</p>
-            {r.headlineSaving > 0 && <p className="mt-3 text-sm">From your own history and US averages: <b className="tabular">{money(r.headlineSaving)}</b> worth checking below.</p>}
-          </>
-        ) : r.headlineSaving > 0 ? (
-          <h1 className="text-2xl font-semibold leading-snug">On this receipt you could have paid <span className="text-accent tabular">{money(r.headlineSaving)}</span> less.</h1>
-        ) : (
-          <h1 className="text-xl font-semibold">We found no savings on this receipt.</h1>
-        )}
-        <p className="mt-2 text-sm text-muted">
-          We read {coverage.lines} lines, matched {coverage.matched}, found savings on {coverage.withFinding}.
-        </p>
-        <p className={`mt-1 text-xs ${receipt.sumCheckPassed ? "text-accent" : "text-warn"}`}>
-          {receipt.sumCheckPassed
-            ? "✓ The lines add up to the printed total."
-            : "Check these lines: the lines we read do not add up to the printed total, so only lines whose own math checks out are compared."}
-        </p>
-      </Card>
+      <div className="slip-wrap">
+        <div className="slip print-in px-4 sm:px-6 pt-4">
+          <div className="flex items-start justify-between gap-3 font-mono text-[13px] text-muted">
+            <div>
+              <div className="font-semibold text-ink">{displayName(receipt.store.name)}{receipt.store.city ? `, ${displayName(receipt.store.city)}` : ""}</div>
+              <div>{receipt.purchasedAt ?? "no date printed"} · {coverage.lines} lines</div>
+            </div>
+            {receipt.isSample && <Badge>Sample</Badge>}
+          </div>
+          <div className="mt-2 flex gap-2 font-mono text-[13px]">
+            <span>TOTAL PAID</span><span className="leader" /><span className="tabular">{money(receipt.total)}</span>
+          </div>
+          <div className="my-4 border-t border-dashed border-line" />
+          {noData ? (
+            <>
+              <h1 className="text-xl font-semibold">No price data for this store yet.</h1>
+              <p className="mt-1 text-sm text-muted">Your history starts now. We read the receipt and saved it in this browser; the next receipt from this store can show price changes.</p>
+              {r.headlineSaving > 0 && <p className="mt-3 text-sm">From your own history and US averages: <b className="tabular">{money(r.headlineSaving)}</b> worth checking below.</p>}
+            </>
+          ) : r.headlineSaving > 0 ? (
+            <h1 className="text-[1.65rem] sm:text-3xl font-semibold leading-tight tracking-[-0.01em] text-balance">
+              On this receipt you could have paid <span className="hl tabular">{money(r.headlineSaving)}</span> less.
+            </h1>
+          ) : (
+            <h1 className="text-xl font-semibold">We found no savings on this receipt.</h1>
+          )}
+          <p className="mt-3 text-sm text-muted">
+            Read {coverage.lines} lines, matched {coverage.matched} to products with price data, found savings on {coverage.withFinding}.
+          </p>
+          <p className={`mt-1 text-sm ${receipt.sumCheckPassed ? "text-accent" : "text-warn"}`}>
+            {receipt.sumCheckPassed
+              ? "✓ The lines add up to the printed total."
+              : "Check these lines: the lines we read do not add up to the printed total, so only lines whose own math checks out are compared."}
+          </p>
+        </div>
+      </div>
 
       {findings.length > 0 && (
         <div className="space-y-3">
@@ -85,9 +93,9 @@ function ResultView({ r, unlocked, pledges }: { r: StoredReceipt; unlocked: bool
                 {hidden.slice(0, 3).map((f, i) => <FakeFinding key={i} f={f} />)}
               </div>
               <div className="absolute inset-0 grid place-items-center">
-                <Card className="text-center shadow-lg max-w-sm">
+                <Card className="text-center shadow-[0_10px_30px_rgb(19_32_26/0.14)] max-w-sm">
                   <p className="font-semibold">{hidden.length} more finding{hidden.length > 1 ? "s" : ""} worth <span className="tabular">{money(hiddenSum)}</span></p>
-                  <Link href="/unlock" className="mt-3 inline-flex rounded-xl bg-accent px-4 py-2.5 text-sm font-medium text-white">Unlock the rest — {money(CONFIG.PRICE_MONTHLY_USD)}/month</Link>
+                  <Link href="/unlock" className="mt-3 inline-flex rounded-lg bg-accent px-4 py-2.5 text-sm font-medium text-white hover:bg-[#0d5734]">Unlock the rest — {money(CONFIG.PRICE_MONTHLY_USD)}/month</Link>
                   <p className="mt-2 text-xs text-muted">If we can&apos;t prove {money(CONFIG.GUARANTEE_THRESHOLD_USD)} of savings in a month, that month is free.</p>
                 </Card>
               </div>
@@ -102,7 +110,7 @@ function ResultView({ r, unlocked, pledges }: { r: StoredReceipt; unlocked: bool
       )}
 
       {r.notices.length > 0 && (
-        <Card className="border-[#f1d9b8]">
+        <Card className="border-[#f0cfc3]">
           <h2 className="font-semibold">Worth a second look</h2>
           <p className="text-xs text-muted">Possibilities on the receipt itself. Not counted as savings.</p>
           <ul className="mt-2 space-y-1 text-sm">{r.notices.map((n, i) => <li key={i}>{n.text} <span className="text-muted tabular">({money(n.amountAtStake)} at stake)</span></li>)}</ul>
@@ -128,8 +136,8 @@ function ResultView({ r, unlocked, pledges }: { r: StoredReceipt; unlocked: bool
       </Card>
 
       <div className="flex gap-2">
-        <Link href="/" className="flex-1 text-center rounded-xl border border-line bg-card px-4 py-2.5 text-sm font-medium">Scan another</Link>
-        <Link href="/history" className="flex-1 text-center rounded-xl border border-line bg-card px-4 py-2.5 text-sm font-medium">History &amp; switch list</Link>
+        <Link href="/" className="flex-1 text-center rounded-lg border border-line bg-card px-4 py-2.5 text-sm font-medium hover:border-ink/30">Scan another</Link>
+        <Link href="/history" className="flex-1 text-center rounded-lg border border-line bg-card px-4 py-2.5 text-sm font-medium hover:border-ink/30">History &amp; switch list</Link>
       </div>
     </div>
   );
@@ -137,12 +145,12 @@ function ResultView({ r, unlocked, pledges }: { r: StoredReceipt; unlocked: bool
 
 function ProvenBlock({ items, total }: { items: ProvenItem[]; total: number }) {
   return (
-    <Card className="border-[#c4e6d6] bg-accent-soft">
-      <h2 className="text-lg font-semibold">Proven on this receipt: <span className="text-accent tabular">{money(total)}</span> saved</h2>
+    <Card className="border-[#c3e2cf] bg-accent-soft">
+      <h2 className="text-lg font-semibold">Proven on this receipt: <span className="hl tabular">{money(total)}</span> saved</h2>
       <p className="text-xs text-muted">From what you paid before and what you paid now. No reference prices used.</p>
       <ul className="mt-3 space-y-2">
         {items.map(i => (
-          <li key={i.pledgeId} className="rounded-xl bg-card border border-line p-3 text-sm">
+          <li key={i.pledgeId} className="rounded-lg bg-card border border-line p-3 text-sm">
             <div className="font-medium">{i.label}</div>
             <div className="mt-1 grid grid-cols-2 gap-2 text-xs text-muted tabular">
               <div>Then: <b className="text-ink">{money(i.then.price)}</b> {i.then.unit ?? "each"}<br />Your receipt, {displayName(i.then.sourceLabel.replace(/^Your receipt, /, ""))}, {i.then.observedAt}</div>
@@ -191,18 +199,18 @@ function FindingCard({ f, r, pledges }: { f: Finding; r: StoredReceipt; pledges:
       <button onClick={() => setOpen(!open)} className="w-full text-left" aria-expanded={open}>
         <div className="flex items-start justify-between gap-3">
           <div>
-            <div className="text-[11px] font-semibold uppercase tracking-wide text-muted">{TYPE_LABEL[f.type]}</div>
-            <div className="mt-0.5 font-mono text-xs text-muted">{line?.rawName}</div>
+            <div className="text-[13px] font-medium text-accent">{TYPE_LABEL[f.type]}</div>
+            <div className="mt-1 font-mono text-xs text-muted">{line?.rawName}</div>
             <p className="mt-1 text-sm leading-snug">{f.headline}</p>
           </div>
           <div className="text-right shrink-0">
-            <div className="text-lg font-semibold text-accent tabular">{money(f.savingOnThisReceipt)}</div>
-            <div className="text-[11px] text-muted">{open ? "hide proof ▲" : "show proof ▼"}</div>
+            <div className="text-lg font-semibold tabular"><span className="hl">{money(f.savingOnThisReceipt)}</span></div>
+            <div className="mt-1 text-xs text-muted underline decoration-dotted underline-offset-2">{open ? "Hide proof" : "Show proof"}</div>
           </div>
         </div>
       </button>
       {open && (
-        <dl className="mt-3 grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 rounded-xl bg-bg p-3 text-xs">
+        <dl className="mt-3 grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 rounded-lg border border-dashed border-line bg-[#f6f7f5] p-3 text-xs">
           <dt className="text-muted">Source</dt>
           <dd>{ev.sourceType === "open_prices" ? "Open Prices observation" : ev.sourceType === "bls" ? "BLS average price" : "Your earlier receipt"}</dd>
           <dt className="text-muted">Where</dt><dd>{ev.sourceLabel}</dd>
@@ -216,7 +224,7 @@ function FindingCard({ f, r, pledges }: { f: Finding; r: StoredReceipt; pledges:
       )}
       {canPledge && (
         <div className="mt-3">
-          <Button variant={pledged ? "secondary" : "ghost"} onClick={toggle} className={pledged ? "border-accent text-accent" : "border border-line"}>
+          <Button variant={pledged ? "secondary" : "ghost"} onClick={toggle} className={pledged ? "border-accent text-accent bg-accent-soft" : "border border-ink/20"}>
             {pledged ? "✓ On your switch list" : "I'll switch next time"}
           </Button>
         </div>

@@ -69,7 +69,7 @@ export default function HistoryClient({ cpi, cpiId }: { cpi: { month: string; va
           <div className="mt-3 space-y-3">
             {[...byStore.entries()].map(([key, ps]) => (
               <div key={key}>
-                <div className="text-xs font-semibold uppercase tracking-wide text-muted">At {storeTitle.get(key)}</div>
+                <div className="text-sm font-medium text-accent">At {storeTitle.get(key)}</div>
                 <ul className="mt-1 divide-y divide-line">
                   {ps.map(p => (
                     <li key={p.id} className="flex items-center justify-between gap-2 py-2 text-sm">
@@ -86,7 +86,7 @@ export default function HistoryClient({ cpi, cpiId }: { cpi: { month: string; va
 
       <Card>
         <h2 className="font-semibold">Proven savings</h2>
-        <p className="mt-1 text-3xl font-semibold text-accent tabular">{money(provenSum)}</p>
+        <p className="mt-1 text-3xl font-semibold tabular"><span className="hl">{money(provenSum)}</span></p>
         <p className="text-xs text-muted">What your switches actually saved, from your own receipts: price then vs price now.</p>
         {perPledge.length > 0 && (unlocked ? (
           <table className="mt-3 w-full text-sm tabular">
@@ -105,7 +105,7 @@ export default function HistoryClient({ cpi, cpiId }: { cpi: { month: string; va
         ))}
       </Card>
 
-      <Card className={counter.met ? "border-[#c4e6d6]" : ""}>
+      <Card className={counter.met ? "border-[#c3e2cf]" : ""}>
         <h2 className="font-semibold">This month&apos;s guarantee</h2>
         <p className="mt-1 text-sm">Proven savings this month: <b className="tabular">{money(counter.proven)}</b> of {money(counter.threshold)}. If we can&apos;t prove {money(counter.threshold)} in a month, that month is free.</p>
         {counter.met && <p className="mt-1 text-sm font-medium text-accent">✓ Met for {monthName(counter.month)}: Chek has paid for itself this month.</p>}

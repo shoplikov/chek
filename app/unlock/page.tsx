@@ -52,11 +52,11 @@ export default function UnlockPage() {
       </Card>
 
       {unlocked ? (
-        <Card className="border-[#c4e6d6] bg-accent-soft"><p className="font-medium">You&apos;re unlocked in this browser.</p></Card>
+        <Card className="border-[#c3e2cf] bg-accent-soft"><p className="font-medium">You&apos;re unlocked in this browser.</p></Card>
       ) : !demo ? (
         <Card>
           <p className="text-sm">Test mode: no real money moves. Pay with the test card:</p>
-          <p className="mt-2 rounded-xl bg-bg px-3 py-2 font-mono text-lg tracking-wider text-center">{TEST_CARD}</p>
+          <p className="mt-2 rounded-lg bg-bg px-3 py-2 font-mono text-lg tracking-wider text-center">{TEST_CARD}</p>
           <p className="mt-1 text-xs text-muted text-center">any future expiry · any CVC · any ZIP</p>
           <Button onClick={checkout} disabled={busy} className="mt-4 w-full">{busy ? <Spinner /> : null} Continue to checkout</Button>
         </Card>
@@ -67,18 +67,18 @@ export default function UnlockPage() {
           <form onSubmit={payDemo} className="mt-3 space-y-2">
             <label className="block text-sm">Card number
               <input value={card} onChange={e => setCard(e.target.value)} inputMode="numeric" placeholder={TEST_CARD} autoComplete="off"
-                className="mt-1 w-full rounded-xl border border-line px-3 py-2 font-mono" />
+                className="mt-1 w-full rounded-lg border border-line px-3 py-2 font-mono" />
             </label>
             <div className="grid grid-cols-2 gap-2">
-              <label className="block text-sm">Expiry<input value={exp} onChange={e => setExp(e.target.value)} placeholder="12/30" autoComplete="off" className="mt-1 w-full rounded-xl border border-line px-3 py-2 font-mono" /></label>
-              <label className="block text-sm">CVC<input value={cvc} onChange={e => setCvc(e.target.value)} placeholder="123" inputMode="numeric" autoComplete="off" className="mt-1 w-full rounded-xl border border-line px-3 py-2 font-mono" /></label>
+              <label className="block text-sm">Expiry<input value={exp} onChange={e => setExp(e.target.value)} placeholder="12/30" autoComplete="off" className="mt-1 w-full rounded-lg border border-line px-3 py-2 font-mono" /></label>
+              <label className="block text-sm">CVC<input value={cvc} onChange={e => setCvc(e.target.value)} placeholder="123" inputMode="numeric" autoComplete="off" className="mt-1 w-full rounded-lg border border-line px-3 py-2 font-mono" /></label>
             </div>
             <Button type="submit" className="w-full">Pay {money(CONFIG.PRICE_MONTHLY_USD)} (test)</Button>
             <button type="button" className="w-full text-xs text-muted underline" onClick={() => { setCard(TEST_CARD); setExp("12/30"); setCvc("123"); }}>Fill in the test card</button>
           </form>
         </Card>
       )}
-      {error && <p role="alert" className="rounded-xl border border-[#f1d9b8] bg-warn-soft px-3 py-2 text-sm text-warn">{error}</p>}
+      {error && <p role="alert" className="rounded-lg border border-[#f0cfc3] bg-warn-soft px-3 py-2 text-sm text-warn">{error}</p>}
     </div>
   );
 }
