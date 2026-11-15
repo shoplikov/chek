@@ -11,7 +11,7 @@ import { useStoreValue } from "@/components/useStore";
 
 const TYPE_LABEL: Record<Finding["type"], string> = {
   cheaper_elsewhere: "Cheaper at another store",
-  cheaper_swap: "Cheaper similar product, same store",
+  cheaper_swap: "Cheaper similar product at this store",
   price_up: "Price went up since your last receipt",
   above_us_average: "Above the US average",
 };

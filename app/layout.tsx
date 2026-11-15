@@ -16,7 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={`${ui.variable} ${receipt.variable} min-h-screen flex flex-col`}>
-        <header className="border-b border-line bg-bg/85 backdrop-blur sticky top-0 z-10">
+        <header className="border-b border-line bg-bg/95 backdrop-blur-md sticky top-0 z-10">
           <nav className="mx-auto max-w-2xl px-4 h-14 flex items-center justify-between">
             <Link href="/" className="font-mono font-semibold text-lg tracking-tight" aria-label="Chek home"><span className="hl">Chek</span></Link>
             <div className="flex gap-1 text-sm">
