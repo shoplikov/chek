@@ -1,10 +1,25 @@
+<div align="center">
+
 # Chek
 
 **Photograph a grocery receipt. See where you overpaid, with a cited source for every number.**
 
-Live: **https://54-163-135-214.nip.io** · No sign-up · Works on a phone
+![Next.js](https://img.shields.io/badge/Next.js-15-000000?logo=nextdotjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white)
+![Tests](https://img.shields.io/badge/unit%20tests-30%20passing-11683f)
+![Data](https://img.shields.io/badge/prices-Open%20Prices%20(ODbL)-ffe24d)
+
+**[Live product](https://54-163-135-214.nip.io)** · **[Pitch deck (PDF)](docs/Chek-pitch-deck.pdf)** · **[Decisions log](docs/DECISIONS.md)**
+
+No sign-up · works on a phone · receipts stay in your browser
+
+</div>
 
 ![Home, a Week 1 result, and Week 2 with proven savings](docs/screens.png)
+
+> [!TIP]
+> **Jury: the full loop takes about three minutes.** Open the live link and tap the sample **Week 1**, pledge two switches,
+> unlock with the test card, then tap **Week 2 (follow-up)**. Details in [How to test it](#how-to-test-it-no-us-receipt-needed).
 
 Chek reads a US grocery receipt and shows, line by line, where the same product was cheaper at
 another nearby store, where a comparable product at the same store costs less per ounce, where

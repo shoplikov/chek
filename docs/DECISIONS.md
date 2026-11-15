@@ -165,3 +165,14 @@ Thresholds are in `lib/config.ts`. Swaps still show both product names so the us
 - Acceptance re-run on the live URL with headless Chromium at 390 px: all section 17 items pass,
   including pledge removal, "Clear demo data", Week 2 without pledges, non-receipt photo, the store
   outside the area and the footer on every page.
+
+## Design pass and deck (2026-11-15, late morning)
+
+- Visual system built around the subject: thermal receipt slips on a cool counter-grey, a highlighter
+  yellow for money the user could keep, ledger green for actions, rust for "cost more". Type:
+  Schibsted Grotesk for the interface, IBM Plex Mono only for text printed on receipts. All-caps
+  tracked labels replaced by sentence case. Tabular figures only inside tables (Schibsted's tabular
+  period is full width and split "$3.50" visually).
+- The result headline is a receipt slip with a torn edge and the total paid; the saving is highlighted.
+- Pitch deck: `docs/Chek-pitch-deck.pdf` (10 slides, English). Every market figure carries its source on
+  the slide; unit economics are labelled as hypotheses. No user interviews were run, and the deck says so.
