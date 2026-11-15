@@ -43,6 +43,7 @@ const BROAD = new Set([
   "en:fruits-and-vegetables-based-foods", "en:dried-products", "en:dried-products-to-be-rehydrated", "en:dehydrated-beverages",
   "en:biscuits-and-cakes", "en:coffees", "en:desserts", "en:dairies", "en:fermented-foods", "en:canned-foods", "en:spreads",
   "en:breakfasts", "en:beverages-and-beverages-preparations", "en:hot-beverages", "en:appetizers", "en:herbs-and-spices",
+  "en:cheeses", "en:fermented-milk-products", "en:milks", "en:meats", "en:prepared-meats", "en:fishes", "en:seafood",
 ]);
 const validTag = (t: string) => /^[a-z]{2}:[a-z0-9-]+$/.test(t);
 
