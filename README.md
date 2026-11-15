@@ -9,7 +9,7 @@
 ![Tests](https://img.shields.io/badge/unit%20tests-30%20passing-11683f)
 ![Data](https://img.shields.io/badge/prices-Open%20Prices%20(ODbL)-ffe24d)
 
-**[Live product](https://54-163-135-214.nip.io)** · **[Pitch deck (PDF)](docs/Chek-pitch-deck.pdf)** · **[Decisions log](docs/DECISIONS.md)**
+**[Live product](https://54-163-135-214.nip.io)** · **[Jury guide](docs/JURY.md)** · **[Pitch deck (PDF)](docs/Chek-pitch-deck.pdf)** · **[Decisions log](docs/DECISIONS.md)**
 
 No sign-up · works on a phone · receipts stay in your browser
 
@@ -20,6 +20,7 @@ No sign-up · works on a phone · receipts stay in your browser
 > [!TIP]
 > **Jury: the full loop takes about three minutes.** Open the live link and tap the sample **Week 1**, pledge two switches,
 > unlock with the test card, then tap **Week 2 (follow-up)**. Details in [How to test it](#how-to-test-it-no-us-receipt-needed).
+> To try a receipt that is not built in, use the labelled [demo receipt](docs/demo-receipt.jpg). Everything is in the [jury guide](docs/JURY.md).
 
 Chek reads a US grocery receipt and shows, line by line, where the same product was cheaper at
 another nearby store, where a comparable product at the same store costs less per ounce, where
@@ -158,7 +159,7 @@ Requires Node 20+. Environment variables are listed in `.env.example`.
   only your own history and BLS averages are compared.
 - Reference observations are up to 100 days old (the smallest window that keeps 300+ products priced
   at 2+ stores). The observation date is always shown next to a price.
-- Matching prefers no match to a wrong match, so some lines stay unmatched (recall about 95% on samples).
+- Matching prefers no match to a wrong match, so some lines stay unmatched (recall 96.5% on samples).
   Ambiguous abbreviations can be matched differently on a first scan; repeat scans on the same
   server reuse the cached match.
 - "Cheaper similar product" relies on Open Food Facts categories; it requires a specific category,
